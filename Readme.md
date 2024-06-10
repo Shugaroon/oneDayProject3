@@ -1,3 +1,3 @@
-project members : KJG, CYJ, LHK, CJC
+project members : KJG, CYJ, LHK, CCJ
 
 project theme: making team schedule planner
