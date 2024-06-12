@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.team-profiles {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: -10px; /* 오버랩 효과 */
+  border: 2px solid #fff; /* 테두리 */
+}
+
+.more-profiles {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -10px;
+  border: 2px solid #fff; /* 테두리 */
+}
+
+.my-profile {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-right: 10px;
+}

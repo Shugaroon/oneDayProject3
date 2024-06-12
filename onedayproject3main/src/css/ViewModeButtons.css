@@ -1,0 +1,31 @@
+.view-mode-buttons {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.view-mode-buttons button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.view-mode-buttons button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.view-mode-buttons button:not(.active):hover {
+  background-color: #f0f0f0;
+}
+
+.view-mode-buttons button:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.view-mode-buttons button:nth-child(2) {
+  border-right: 1px solid #ddd;
+}

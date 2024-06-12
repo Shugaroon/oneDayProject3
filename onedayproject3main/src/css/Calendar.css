@@ -1,0 +1,159 @@
+.calendar-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.dropdown {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 2px solid #3498db;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+.dropdown-content div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content div:hover {
+  background-color: #ddd;
+}
+
+.add-event-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-event-button:hover {
+  background-color: #2980b9;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rbc-toolbar {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rbc-toolbar button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #2980b9;
+}
+
+.rbc-event {
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.single-day-event {
+  background-color: transparent !important;
+  color: black !important;
+  display: flex;
+  align-items: center;
+}
+
+.single-day-event span {
+  color: black;
+}
+
+.multi-day-event {
+  color: white !important;
+  background-color: #3498db !important;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.rbc-month-view .rbc-header {
+  background-color: #fff;
+  color: #333;
+  font-weight: bold;
+}
+
+.rbc-month-view {
+  border: none;
+}
+
+.rbc-date-cell {
+  color: #555;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+.my-calendar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}

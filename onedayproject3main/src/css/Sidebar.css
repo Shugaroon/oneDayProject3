@@ -1,0 +1,75 @@
+.sidebar {
+  width: 270px;
+  height: 100vh;
+  background-color: #fbfbfb;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  transition: width 0.3s ease, visibility 0.3s, opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.hidden {
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.hamburger-button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.menu {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.menu-item {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.submenu {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.submenu-item {
+  font-size: 16px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.badge {
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+  margin-left: 10px;
+}
