@@ -35,11 +35,11 @@ const App = () => {
       setSidebarOpen(false);
       setTimeout(() => {
         setSidebarOpen(false);
-      }, 300); // 300ms after hiding sidebar
+      }, 300);
     } else {
       setTimeout(() => {
         setSidebarOpen(true);
-      }, 300); // 300ms after hiding icon bar
+      }, 300);
     }
   };
 

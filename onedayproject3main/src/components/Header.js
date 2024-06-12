@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/Header.css";
 
-// 이미지 파일들을 불러옵니다.
 import profile1 from "./img/profile1.jpg";
 import profile2 from "./img/profile2.jpg";
 import profile3 from "./img/profile3.jpg";

@@ -1,19 +1,36 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "../css/EventForm.css";
 
 const EventForm = ({ onSave, onCancel, isMultiDay }) => {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [color, setColor] = useState("#3498db"); // 기본 색상
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [color, setColor] = useState("#3498db");
 
   const handleSubmit = e => {
     e.preventDefault();
+    const start = new Date(startDate);
+    start.setHours(parseInt(startTime.split(":")[0], 10));
+    start.setMinutes(parseInt(startTime.split(":")[1], 10));
+
+    let end;
+    if (isMultiDay) {
+      end = new Date(endDate);
+    } else {
+      end = new Date(startDate);
+    }
+    end.setHours(parseInt(endTime.split(":")[0], 10));
+    end.setMinutes(parseInt(endTime.split(":")[1], 10));
+
     onSave({
       title,
-      start: new Date(startDate),
-      end: new Date(isMultiDay ? endDate : startDate), // Use startDate for end if not multi-day
-      allDay: !isMultiDay,
+      start: start,
+      end: end,
+      allDay: false,
       color: color,
     });
   };
@@ -30,25 +47,61 @@ const EventForm = ({ onSave, onCancel, isMultiDay }) => {
           required
         />
       </label>
-      <label>
-        Start Date:
-        <input
-          type="datetime-local"
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-          required
-        />
-      </label>
-      {isMultiDay && (
+      <div className="form-group">
         <label>
-          End Date:
-          <input
-            type="datetime-local"
-            value={endDate}
-            onChange={e => setEndDate(e.target.value)}
+          Date:
+          <DatePicker
+            selected={startDate}
+            onChange={date => {
+              setStartDate(date);
+              if (!isMultiDay) setEndDate(date);
+            }}
+            dateFormat="yyyy-MM-dd"
             required
           />
         </label>
+        <label>
+          Start Time:
+          <input
+            type="time"
+            value={startTime}
+            onChange={e => setStartTime(e.target.value)}
+            required
+          />
+        </label>
+        {!isMultiDay && (
+          <label>
+            End Time:
+            <input
+              type="time"
+              value={endTime}
+              onChange={e => setEndTime(e.target.value)}
+              required
+            />
+          </label>
+        )}
+      </div>
+      {isMultiDay && (
+        <div className="form-group">
+          <label>
+            End Date:
+            <DatePicker
+              selected={endDate}
+              onChange={date => setEndDate(date)}
+              dateFormat="yyyy-MM-dd"
+              required
+            />
+          </label>
+          <label>
+            End Time:
+            <input
+              type="time"
+              value={endTime}
+              onChange={e => setEndTime(e.target.value)}
+              required
+            />
+          </label>
+        </div>
       )}
       <label>
         Color:
