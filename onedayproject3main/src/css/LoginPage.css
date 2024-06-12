@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003cff;
+    /* background-color: bisque; */
+    height: 100vh;
+}
+
+.white-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 1000px;
+    height: 800px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 5px;
+    border: 1px solid black;
+    height: 70%;
+    width: 50%;
+}
+.logo {
+    margin-top: 10vh;
+}
