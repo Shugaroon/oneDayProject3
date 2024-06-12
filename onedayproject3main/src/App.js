@@ -62,30 +62,36 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container">
-        <Header />
-        <div className="main-content">
-          <div
-            className={`sidebar-container ${sidebarOpen ? "open" : "hidden"}`}
-          >
-            <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-          </div>
-          <div
-            className={`icon-bar-container ${sidebarOpen ? "hidden" : "open"}`}
-          >
-            <IconBar toggleSidebar={toggleSidebar} />
-          </div>
-          <div
-            className={`calendar-wrapper ${sidebarOpen ? "sidebar-open" : ""}`}
-          >
-            <MyCalendar
-              date={date}
-              view={view}
-              onNavigate={handleNavigate}
-              onView={handleViewChange}
-              onAddEvent={handleAddEvent}
-              events={events}
-            />
+      <div className={`container ${sidebarOpen ? "sidebar-open" : ""}`}>
+        <div className="inner-container">
+          <Header />
+          <div className="main-content">
+            <div
+              className={`sidebar-container ${sidebarOpen ? "open" : "hidden"}`}
+            >
+              <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+            </div>
+            <div
+              className={`icon-bar-container ${
+                sidebarOpen ? "hidden" : "open"
+              }`}
+            >
+              <IconBar toggleSidebar={toggleSidebar} />
+            </div>
+            <div
+              className={`calendar-wrapper ${
+                sidebarOpen ? "sidebar-open" : ""
+              }`}
+            >
+              <MyCalendar
+                date={date}
+                view={view}
+                onNavigate={handleNavigate}
+                onView={handleViewChange}
+                onAddEvent={handleAddEvent}
+                events={events}
+              />
+            </div>
           </div>
         </div>
       </div>

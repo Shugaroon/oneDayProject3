@@ -66,7 +66,7 @@ const MyCalendar = ({ date, view, onNavigate, onView, onAddEvent, events }) => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ flexGrow: 1, minHeight: 600 }}
+        style={{ flexGrow: 1 }}
         date={date}
         view={view}
         onNavigate={onNavigate}
