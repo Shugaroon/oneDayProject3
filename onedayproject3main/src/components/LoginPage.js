@@ -6,8 +6,9 @@ export default function App() {
         <div className="container">
             <div className="white-container">
                 <div className="login-container">
-                    <h1 className="logo">LOGO</h1>
-                    <LoginForm />
+                    <div className="login-form-wrapper">
+                        <LoginForm />
+                    </div>
                 </div>
             </div>
         </div>

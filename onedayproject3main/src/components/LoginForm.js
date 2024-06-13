@@ -3,30 +3,35 @@ import "../css/LoginForm.css";
 export default function LoginForm() {
     return (
         <form className="login-form">
+            <p className="logo">TEAM COK</p>
             <input
                 type="email"
                 id="id"
-                className="id-input input"
+                className="id-input input login-box-item"
                 placeholder="Enter your email address"
+                required
             />
             <input
                 type="password"
                 id="password"
-                className="password-input input"
+                className="password-input input login-box-item"
+                required
             />
             <button className="email-login-button">LOGIN</button>
             <a href="/" className="sign-up-button">
                 회원 가입하기
             </a>
-            <button className="google-login-button loginBtn ">
-                Google로 로그인 하기
-            </button>
-            <button className="kakao-login-button loginBtn">
-                KaKao로 로그인 하기
-            </button>
-            <button className="naver-login-button loginBtn">
-                Naver로 로그인 하기
-            </button>
+            <div className="loginBtn-wrapper">
+                <button className="google-login-button login-box-item">
+                    Google로 로그인 하기
+                </button>
+                <button className="kakao-login-button login-box-item">
+                    KaKao로 로그인 하기
+                </button>
+                <button className="naver-login-button login-box-item">
+                    Naver로 로그인 하기
+                </button>
+            </div>
         </form>
     );
 }
