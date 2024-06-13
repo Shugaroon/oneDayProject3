@@ -3,22 +3,24 @@ import "../css/LoginForm.css";
 export default function LoginForm() {
     return (
         <form className="login-form">
-            <p className="logo">TEAM COK</p>
+            <div className="logo-wrapper">
+                <p className="logo">TEAM COK</p>
+            </div>
             <input
                 type="email"
                 id="id"
-                className="id-input input login-box-item"
+                className="input login-box-item"
                 placeholder="Enter your email address"
                 required
             />
             <input
                 type="password"
                 id="password"
-                className="password-input input login-box-item"
+                className="input login-box-item"
                 required
             />
             <button className="email-login-button">LOGIN</button>
-            <a href="/" className="sign-up-button">
+            <a href="/" className="sign-up-word">
                 회원 가입하기
             </a>
             <div className="loginBtn-wrapper">
