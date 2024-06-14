@@ -7,7 +7,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.13);
   z-index: 100;
 }
-
+/* 
 .color-swatch {
   width: 24px;
   height: 24px;
@@ -16,11 +16,11 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: transform 0.2s ease-in, border-color 0.2s ease-in;
-}
+} */
 
-.color-swatch:hover {
+/* .color-swatch:hover {
   transform: scale(1.2);
-}
+} */
 
 .color-swatch.selected {
   border-color: rgb(207, 207, 207);
