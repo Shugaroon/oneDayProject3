@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -38,23 +38,29 @@ const App = () => {
   const [themeColor, setThemeColor] = useState(savedThemeColor);
   const [isMultiDay, setIsMultiDay] = useState(false);
 
-  useEffect(() => {
-    document.body.style.backgroundColor = themeColor;
-    updateElementStyles();
-  }, [themeColor]);
-
-  const updateElementStyles = () => {
+  const updateElementStyles = useCallback(() => {
     const elements = document.querySelectorAll(
-      ".add-event-button, .view-mode-buttons .active, .more-profiles, .badge, .dropdown"
+      ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
     );
     elements.forEach(element => {
       if (element.classList.contains("dropdown")) {
         element.style.borderBottomColor = themeColor;
+      } else if (element.classList.contains("active")) {
+        element.style.backgroundColor = themeColor;
+        element.style.color = "white";
+      } else if (element.classList.contains("view-mode-button")) {
+        element.style.backgroundColor = "white";
+        element.style.color = "black";
       } else {
         element.style.backgroundColor = themeColor;
       }
     });
-  };
+  }, [themeColor]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = themeColor;
+    updateElementStyles();
+  }, [themeColor, updateElementStyles]);
 
   const toggleSidebar = () => {
     setSidebarOpen(prev => !prev);
@@ -165,11 +171,17 @@ const AppContent = ({
   useEffect(() => {
     const updateElementStyles = () => {
       const elements = document.querySelectorAll(
-        ".add-event-button, .view-mode-buttons .active, .more-profiles, .badge, .dropdown"
+        ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
       );
       elements.forEach(element => {
         if (element.classList.contains("dropdown")) {
           element.style.borderBottomColor = themeColor;
+        } else if (element.classList.contains("active")) {
+          element.style.backgroundColor = themeColor;
+          element.style.color = "white";
+        } else if (element.classList.contains("view-mode-button")) {
+          element.style.backgroundColor = "white";
+          element.style.color = "black";
         } else {
           element.style.backgroundColor = themeColor;
         }
@@ -235,7 +247,6 @@ const AppContent = ({
                       onView={handleViewChange}
                       onAddEvent={handleAddEvent}
                       events={events}
-                      themeColor={themeColor} // Add this line
                     />
                   </div>
                 }
