@@ -114,6 +114,7 @@ html {
   display: flex;
   font-size: 0.3rem;
   justify-content: space-between;
+  align-items: center;
   margin: 0px 20px;
 }
 
@@ -152,11 +153,10 @@ html {
 /* important 버튼---------------------------------- */
 .important-btn {
   width: 40px;
-  /* border: none; */
   border-radius: 5px;
   box-shadow: #ddd 1.2px 1.8px;
   transition: 0.2s ease-in;
-  height: 30px;
+  height: 35px;
 }
 .important-btn:hover {
   background-color: #ffbaba;

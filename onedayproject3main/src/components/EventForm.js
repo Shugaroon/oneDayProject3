@@ -108,9 +108,15 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
               required
             />
           </div>
-          <div>Set Time</div>
+
+          <div className="time-form-letter-wrapper">
+            <div className="time-form-line"></div>
+            <div className="time-form-letter">Set Time </div>
+            <div className="time-form-line"></div>
+          </div>
+
           <div className="time-form-group">
-            <div className="time-from-start">
+            <div className="time-form-start">
               <input
                 type="time"
                 value={startTime}
@@ -118,7 +124,7 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
                 required
               />
             </div>
-            <div className="time-from-end">
+            <div className="time-form-end">
               <input
                 type="time"
                 value={endTime}
@@ -133,43 +139,73 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
       {/* add event multiday part--------------------------------------------- */}
       {isMultiDay && (
         <div className="form-group-multiday">
+          <div className="time-form-letter-wrapper-multi">
+            <div className="time-form-line"></div>
+            <div className="time-form-letter">Set Time </div>
+            <div className="time-form-line"></div>
+          </div>
+
           <div className="form-start-multiday">
-            <label>
-              Start Event
-              <DatePicker
-                className="date-picker"
-                selected={startDate}
-                onChange={date => {
-                  setStartDate(date);
-                  if (!isMultiDay) setEndDate(date);
-                }}
-                dateFormat="yyyy-MM-dd"
-                required
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 45 45"
+              fill="none"
+            >
+              <path
+                d="M22.5 11.25V22.5L30 26.25M41.25 22.5C41.25 32.8553 32.8553 41.25 22.5 41.25C12.1447 41.25 3.75 32.8553 3.75 22.5C3.75 12.1447 12.1447 3.75 22.5 3.75C32.8553 3.75 41.25 12.1447 41.25 22.5Z"
+                stroke="black"
+                stroke-width="2.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
-              <input
-                type="time"
-                value={startTime}
-                onChange={e => setStartTime(e.target.value)}
-                required
-              />
-            </label>
+            </svg>
+            <DatePicker
+              className="date-picker"
+              selected={startDate}
+              onChange={date => {
+                setStartDate(date);
+                if (!isMultiDay) setEndDate(date);
+              }}
+              dateFormat="yyyy-MM-dd"
+              required
+            />
+            <input
+              type="time"
+              value={startTime}
+              onChange={e => setStartTime(e.target.value)}
+              required
+            />
           </div>
           <div className="form-end-multiday">
-            <label>
-              End Event
-              <DatePicker
-                selected={endDate}
-                onChange={date => setEndDate(date)}
-                dateFormat="yyyy-MM-dd"
-                required
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 45 45"
+              fill="none"
+            >
+              <path
+                d="M22.5 11.25V22.5L17.8125 30M41.25 22.5C41.25 32.8553 32.8553 41.25 22.5 41.25C12.1447 41.25 3.75 32.8553 3.75 22.5C3.75 12.1447 12.1447 3.75 22.5 3.75C32.8553 3.75 41.25 12.1447 41.25 22.5Z"
+                stroke="black"
+                stroke-width="2.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
-              <input
-                type="time"
-                value={endTime}
-                onChange={e => setEndTime(e.target.value)}
-                required
-              />
-            </label>
+            </svg>
+            <DatePicker
+              selected={endDate}
+              onChange={date => setEndDate(date)}
+              dateFormat="yyyy-MM-dd"
+              required
+            />
+            <input
+              type="time"
+              value={endTime}
+              onChange={e => setEndTime(e.target.value)}
+              required
+            />
           </div>
         </div>
       )}
