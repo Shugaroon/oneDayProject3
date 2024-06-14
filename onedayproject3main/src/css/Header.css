@@ -1,14 +1,27 @@
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   background-color: #fff;
 }
-
 .team-profiles {
   display: flex;
   align-items: center;
+}
+.left-container {
+  display: flex;
+  align-items: center;
+}
+
+.right-container {
+  display: flex;
+  align-items: center;
+}
+
+.home-link {
+  text-decoration: none;
+  color: black;
 }
 
 .profile-pic {
@@ -18,7 +31,6 @@
   margin-left: -10px;
   border: 2px solid #fff;
 }
-
 .more-profiles {
   width: 40px;
   height: 40px;
@@ -30,11 +42,6 @@
   align-items: center;
   margin-left: -10px;
   border: 2px solid #fff;
-}
-
-.my-profile {
-  display: flex;
-  align-items: center;
 }
 
 .username {
