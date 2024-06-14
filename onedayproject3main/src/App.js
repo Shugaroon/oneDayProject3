@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useParams,
+  useLocation,
 } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import MyCalendar from "./components/Calendar";
@@ -14,9 +15,18 @@ import Modal from "./components/Modal";
 import EventForm from "./components/EventForm";
 import ProjectSelection from "./components/ProjectSelection";
 import ProjectForm from "./components/ProjectForm";
+import ThemeModal from "./components/ThemeModal";
 import "./App.css";
 
 const App = () => {
+  const themes = {
+    Default: "#003cff",
+    Dark: "#333",
+    Green: "#4CAF50",
+  };
+
+  const savedThemeColor = localStorage.getItem("themeColor") || themes.Default;
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState("month");
@@ -24,7 +34,27 @@ const App = () => {
   const [projects, setProjects] = useState([]);
   const [showAddEventModal, setShowAddEventModal] = useState(false);
   const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+  const [showThemeModal, setShowThemeModal] = useState(false);
+  const [themeColor, setThemeColor] = useState(savedThemeColor);
   const [isMultiDay, setIsMultiDay] = useState(false);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = themeColor;
+    updateElementStyles();
+  }, [themeColor]);
+
+  const updateElementStyles = () => {
+    const elements = document.querySelectorAll(
+      ".add-event-button, .view-mode-buttons .active, .more-profiles, .badge, .dropdown"
+    );
+    elements.forEach(element => {
+      if (element.classList.contains("dropdown")) {
+        element.style.borderBottomColor = themeColor;
+      } else {
+        element.style.backgroundColor = themeColor;
+      }
+    });
+  };
 
   const toggleSidebar = () => {
     setSidebarOpen(prev => !prev);
@@ -36,6 +66,9 @@ const App = () => {
 
   const handleViewChange = newView => {
     setView(newView);
+    setTimeout(() => {
+      updateElementStyles();
+    }, 0);
   };
 
   const handleAddEvent = () => {
@@ -57,97 +90,194 @@ const App = () => {
     setShowAddProjectModal(false);
   };
 
+  const openThemeModal = () => {
+    setShowThemeModal(true);
+  };
+
+  const closeThemeModal = () => {
+    setShowThemeModal(false);
+  };
+
+  const selectTheme = color => {
+    setThemeColor(color);
+    localStorage.setItem("themeColor", color); // 로컬 스토리지에 저장
+    closeThemeModal();
+  };
+
   return (
     <Router>
-      <div className="App">
-        <div className={`container ${sidebarOpen ? "sidebar-open" : ""}`}>
-          <div className="inner-container">
-            <Header />
-            <div className="main-content">
-              <div
-                className={`sidebar-container ${
-                  sidebarOpen ? "open" : "hidden"
-                }`}
-              >
-                <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-              </div>
-              <div
-                className={`icon-bar-container ${
-                  sidebarOpen ? "hidden" : "open"
-                }`}
-              >
-                <IconBar toggleSidebar={toggleSidebar} />
-              </div>
-              <Routes>
-                <Route
-                  path="/calendar/:projectId"
-                  element={
-                    <ProjectCalendarWrapper
+      <AppContent
+        sidebarOpen={sidebarOpen}
+        toggleSidebar={toggleSidebar}
+        themeColor={themeColor}
+        date={date}
+        view={view}
+        handleNavigate={handleNavigate}
+        handleViewChange={handleViewChange}
+        handleAddEvent={handleAddEvent}
+        events={events}
+        projects={projects}
+        handleAddProject={handleAddProject}
+        showAddEventModal={showAddEventModal}
+        setShowAddEventModal={setShowAddEventModal}
+        showAddProjectModal={showAddProjectModal}
+        setShowAddProjectModal={setShowAddProjectModal}
+        showThemeModal={showThemeModal}
+        openThemeModal={openThemeModal}
+        closeThemeModal={closeThemeModal}
+        selectTheme={selectTheme}
+        handleSaveEvent={handleSaveEvent}
+        handleSaveProject={handleSaveProject}
+        isMultiDay={isMultiDay}
+        setIsMultiDay={setIsMultiDay}
+      />
+    </Router>
+  );
+};
+
+const AppContent = ({
+  sidebarOpen,
+  toggleSidebar,
+  themeColor,
+  date,
+  view,
+  handleNavigate,
+  handleViewChange,
+  handleAddEvent,
+  events,
+  projects,
+  handleAddProject,
+  showAddEventModal,
+  setShowAddEventModal,
+  showAddProjectModal,
+  setShowAddProjectModal,
+  showThemeModal,
+  openThemeModal,
+  closeThemeModal,
+  selectTheme,
+  handleSaveEvent,
+  handleSaveProject,
+  isMultiDay,
+  setIsMultiDay,
+}) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const updateElementStyles = () => {
+      const elements = document.querySelectorAll(
+        ".add-event-button, .view-mode-buttons .active, .more-profiles, .badge, .dropdown"
+      );
+      elements.forEach(element => {
+        if (element.classList.contains("dropdown")) {
+          element.style.borderBottomColor = themeColor;
+        } else {
+          element.style.backgroundColor = themeColor;
+        }
+      });
+    };
+
+    updateElementStyles();
+  }, [themeColor, location]);
+
+  return (
+    <div className="App" style={{ backgroundColor: themeColor }}>
+      <div className={`container ${sidebarOpen ? "sidebar-open" : ""}`}>
+        <div className="inner-container">
+          <Header />
+          <div className="main-content">
+            <div
+              className={`sidebar-container ${sidebarOpen ? "open" : "hidden"}`}
+            >
+              <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+            </div>
+            <div
+              className={`icon-bar-container ${
+                sidebarOpen ? "hidden" : "open"
+              }`}
+            >
+              <IconBar
+                toggleSidebar={toggleSidebar}
+                openThemeModal={openThemeModal}
+              />
+            </div>
+            <Routes>
+              <Route
+                path="/calendar/:projectId"
+                element={
+                  <ProjectCalendarWrapper
+                    date={date}
+                    view={view}
+                    onNavigate={handleNavigate}
+                    onView={handleViewChange}
+                    onAddEvent={handleAddEvent}
+                    events={events}
+                    handleSaveEvent={handleSaveEvent}
+                    showAddEventModal={showAddEventModal}
+                    setShowAddEventModal={setShowAddEventModal}
+                    isMultiDay={isMultiDay}
+                    setIsMultiDay={setIsMultiDay}
+                    themeColor={themeColor}
+                  />
+                }
+              />
+              <Route
+                path="/calendar"
+                element={
+                  <div
+                    className={`content-wrapper calendar-content-wrapper ${
+                      sidebarOpen ? "sidebar-open" : ""
+                    }`}
+                  >
+                    <MyCalendar
                       date={date}
                       view={view}
                       onNavigate={handleNavigate}
                       onView={handleViewChange}
                       onAddEvent={handleAddEvent}
                       events={events}
-                      handleSaveEvent={handleSaveEvent}
-                      showAddEventModal={showAddEventModal}
-                      setShowAddEventModal={setShowAddEventModal}
-                      isMultiDay={isMultiDay}
-                      setIsMultiDay={setIsMultiDay}
+                      themeColor={themeColor} // Add this line
                     />
-                  }
-                />
-                <Route
-                  path="/calendar"
-                  element={
-                    <div
-                      className={`content-wrapper calendar-content-wrapper ${
-                        sidebarOpen ? "sidebar-open" : ""
-                      }`}
-                    >
-                      <MyCalendar
-                        date={date}
-                        view={view}
-                        onNavigate={handleNavigate}
-                        onView={handleViewChange}
-                        onAddEvent={handleAddEvent}
-                        events={events}
-                      />
-                    </div>
-                  }
-                />
-                <Route
-                  path="/"
-                  element={
-                    <div
-                      className={`content-wrapper project-content-wrapper ${
-                        sidebarOpen ? "sidebar-open" : ""
-                      }`}
-                    >
-                      <ProjectSelection
-                        projects={projects}
-                        onAddProject={handleAddProject}
-                      />
-                    </div>
-                  }
-                />
-              </Routes>
-            </div>
+                  </div>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <div
+                    className={`content-wrapper project-content-wrapper ${
+                      sidebarOpen ? "sidebar-open" : ""
+                    }`}
+                  >
+                    <ProjectSelection
+                      projects={projects}
+                      onAddProject={handleAddProject}
+                    />
+                  </div>
+                }
+              />
+            </Routes>
           </div>
         </div>
-        {showAddProjectModal && (
-          <Modal
-            isOpen={showAddProjectModal}
-            onClose={() => setShowAddProjectModal(false)}
-          >
-            <ProjectForm
-              onSave={handleSaveProject}
-              onCancel={() => setShowAddProjectModal(false)}
-            />
-          </Modal>
-        )}
       </div>
-    </Router>
+      {showAddProjectModal && (
+        <Modal
+          isOpen={showAddProjectModal}
+          onClose={() => setShowAddProjectModal(false)}
+        >
+          <ProjectForm
+            onSave={handleSaveProject}
+            onCancel={() => setShowAddProjectModal(false)}
+          />
+        </Modal>
+      )}
+      {showThemeModal && (
+        <ThemeModal
+          isOpen={showThemeModal}
+          onClose={closeThemeModal}
+          selectTheme={selectTheme}
+        />
+      )}
+    </div>
   );
 };
 

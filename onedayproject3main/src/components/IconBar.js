@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/IconBar.css";
 
-const IconBar = ({ toggleSidebar }) => {
+const IconBar = ({ toggleSidebar, openThemeModal }) => {
   return (
     <div className="icon-bar">
       <button className="hamburger-button" onClick={toggleSidebar}>
@@ -11,6 +11,9 @@ const IconBar = ({ toggleSidebar }) => {
       <div className="icon">📅</div>
       <div className="icon">💬</div>
       <div className="icon">⚙️</div>
+      <div className="icon" onClick={openThemeModal}>
+        🎨
+      </div>
     </div>
   );
 };
