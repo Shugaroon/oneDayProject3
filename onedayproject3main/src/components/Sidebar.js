@@ -5,7 +5,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <div className={`sidebar ${isOpen ? "" : "hidden"}`}>
       <div className="sidebar-header">
-        <span className="home-text">Home</span>
+        <span className="home-text"></span>
         <button className="hamburger-button" onClick={toggleSidebar}>
           &#9776;
         </button>

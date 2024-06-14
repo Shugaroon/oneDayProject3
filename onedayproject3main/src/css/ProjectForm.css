@@ -1,0 +1,44 @@
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-form h2 {
+  margin-bottom: 20px;
+}
+
+.project-form label {
+  margin-bottom: 10px;
+}
+
+.project-form input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button:first-of-type {
+  background-color: #3498db;
+  color: white;
+}
+
+.form-actions button:last-of-type {
+  background-color: #e74c3c;
+  color: white;
+}
