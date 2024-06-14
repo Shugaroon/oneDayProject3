@@ -37,6 +37,7 @@ const App = () => {
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [themeColor, setThemeColor] = useState(savedThemeColor);
   const [isMultiDay, setIsMultiDay] = useState(false);
+  const [themeModalAnchor, setThemeModalAnchor] = useState(null);
 
   const updateElementStyles = useCallback(() => {
     const elements = document.querySelectorAll(
@@ -96,7 +97,8 @@ const App = () => {
     setShowAddProjectModal(false);
   };
 
-  const openThemeModal = () => {
+  const openThemeModal = themeIconRef => {
+    setThemeModalAnchor(themeIconRef);
     setShowThemeModal(true);
   };
 
@@ -136,6 +138,7 @@ const App = () => {
         handleSaveProject={handleSaveProject}
         isMultiDay={isMultiDay}
         setIsMultiDay={setIsMultiDay}
+        themeModalAnchor={themeModalAnchor}
       />
     </Router>
   );
@@ -165,6 +168,7 @@ const AppContent = ({
   handleSaveProject,
   isMultiDay,
   setIsMultiDay,
+  themeModalAnchor,
 }) => {
   const location = useLocation();
 
@@ -286,6 +290,7 @@ const AppContent = ({
           isOpen={showThemeModal}
           onClose={closeThemeModal}
           selectTheme={selectTheme}
+          anchorRef={themeModalAnchor}
         />
       )}
     </div>
