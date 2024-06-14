@@ -14,6 +14,7 @@ import Modal from "./components/Modal";
 import EventForm from "./components/EventForm";
 import ProjectSelection from "./components/ProjectSelection";
 import ProjectForm from "./components/ProjectForm";
+
 import "./App.css";
 
 const App = () => {
@@ -27,14 +28,14 @@ const App = () => {
   const [isMultiDay, setIsMultiDay] = useState(false);
 
   const toggleSidebar = () => {
-    setSidebarOpen(prev => !prev);
+    setSidebarOpen((prev) => !prev);
   };
 
-  const handleNavigate = newDate => {
+  const handleNavigate = (newDate) => {
     setDate(newDate);
   };
 
-  const handleViewChange = newView => {
+  const handleViewChange = (newView) => {
     setView(newView);
   };
 
@@ -51,7 +52,7 @@ const App = () => {
     setShowAddProjectModal(true);
   };
 
-  const handleSaveProject = project => {
+  const handleSaveProject = (project) => {
     const newProject = { ...project, id: uuidv4(), events: [] };
     setProjects([...projects, newProject]);
     setShowAddProjectModal(false);
@@ -151,7 +152,7 @@ const App = () => {
   );
 };
 
-const ProjectCalendarWrapper = props => {
+const ProjectCalendarWrapper = (props) => {
   const { projectId } = useParams();
   return (
     <div className="content-wrapper calendar-content-wrapper">
@@ -191,7 +192,7 @@ const AddEventModal = ({
         </div>
         <EventForm
           isMultiDay={isMultiDay}
-          onSave={event => handleSaveEvent(event, projectId)}
+          onSave={(event) => handleSaveEvent(event, projectId)}
           onCancel={() => setShowAddEventModal(false)}
         />
       </Modal>
