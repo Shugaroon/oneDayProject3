@@ -1,65 +1,193 @@
 .event-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  padding: 30px 20px 20px 20px;
+  position: relative;
+  /* height: 400px; */
+
+  /* gap: 10px; */
 }
+
+/* event background color palette------------------------------- */
 .color-palette {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  position: absolute;
+  left: 330px;
+  top: 50px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
+
 .color-swatch {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid transparent;
   transition: border-color 0.3s;
+  z-index: 100;
+}
+.color-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .color-swatch.selected {
-  border-color: black;
+  border-color: rgb(179, 179, 179);
 }
-.event-form h2 {
+/* .event-form h2 {
   margin-bottom: 20px;
-}
+} */
 
-.event-form label {
+/* .event-form label {
   margin-bottom: 10px;
-}
+} */
 
 .event-form input {
   padding: 8px;
   margin-top: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 10px;
+  height: 23px;
 }
+/* 
+.date-form input {
+  /* width: 116%; */
+/* } 
+/* ----------------important 버튼 줄------------------- */
+.event-form-title {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+}
+.event-form-title input {
+  flex: 1;
+  border: none;
+  margin: 0;
+  outline: none;
+}
+
+.event-form-topic-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  padding-right: 8px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.date-form {
+  /* margin-bottom: px; */
+  /* align-items: last baseline; */
+  /* width: 100%; */
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+/* .date-form-svg {
+  margin-top: 20vw;
+} */
+
+.date-form input {
+  /* padding-right: 70%; */
+  margin: 0;
+  border: none;
+  outline: none;
+  padding-left: 12px;
+  font-size: 15px;
+}
+
+.time-form-group {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.time-from-start {
+  margin-right: 9px;
+}
+/* .time-from-end {
+} */
 
 .form-group {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
 }
 
+/* multiday css--------------------------------------------- */
+.form-group-multiday {
+  display: flex;
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.time-form-group input,
+.form-group-multiday input {
+  /* width: 20vw; */
+  width: 150px;
+  /* flex: 1; */
+}
+
 .form-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 5px;
 }
 
 .form-actions button {
-  padding: 10px 20px;
-  margin-left: 10px;
+  /* padding: 0px 20px; */
   border: none;
-  border-radius: 4px;
+  border-radius: 9px;
   cursor: pointer;
+  width: 100%;
+  height: 43px;
 }
 
 .form-actions button:first-of-type {
-  background-color: #3498db;
+  background-color: #003cff;
   color: white;
+  margin: 0px 9px 7px 0px;
 }
 
 .form-actions button:last-of-type {
-  background-color: #e74c3c;
+  background-color: #c5c5c5;
   color: white;
+}
+
+.form-actions button:hover {
+  background-color: #e74c3c;
+}
+
+/* input {
+  width: 100%;
+} */
+
+.color-palette-button {
+  margin-left: 7px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  background-color: #003cff;
+  border-radius: 100%;
+}
+
+.color-swatch.selected {
+  border-color: #000;
 }

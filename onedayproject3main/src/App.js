@@ -59,6 +59,7 @@ const App = () => {
     setEvents([...events, event]);
     setShowAddEventModal(false);
   };
+  const onImportantSet = () => {};
 
   return (
     <div className="App">
@@ -102,22 +103,32 @@ const App = () => {
         >
           <div className="event-type-selector">
             <button
-              className={!isMultiDay ? "active" : ""}
-              onClick={() => setIsMultiDay(false)}
+              className="important-btn"
+              type="button"
+              onClick={onImportantSet}
             >
-              Single Day
+              🚨
             </button>
-            <button
-              className={isMultiDay ? "active" : ""}
-              onClick={() => setIsMultiDay(true)}
-            >
-              Multi Day
-            </button>
+            <div className="event-type-btn-wrapper">
+              <button
+                className={!isMultiDay ? "active" : ""}
+                onClick={() => setIsMultiDay(false)}
+              >
+                Single Day
+              </button>
+              <button
+                className={isMultiDay ? "active" : ""}
+                onClick={() => setIsMultiDay(true)}
+              >
+                Multi Day
+              </button>
+            </div>
           </div>
           <EventForm
             isMultiDay={isMultiDay}
             onSave={handleSaveEvent}
             onCancel={() => setShowAddEventModal(false)}
+            onImportantSet={onImportantSet}
           />
         </Modal>
       )}

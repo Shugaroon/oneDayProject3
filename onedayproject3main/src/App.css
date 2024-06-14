@@ -82,3 +82,68 @@ html {
   margin-left: 40px;
   padding-right: 10px;
 }
+
+/* modal single/multi day btn  by 멈머------------------------- */
+.event-type-selector {
+  display: flex;
+  font-size: 0.3rem;
+  justify-content: space-between;
+  margin: 0px 20px;
+}
+
+.event-type-selector button {
+  background-color: transparent;
+  padding: 0px 10px;
+  border: none;
+  font-size: 12px;
+  align-items: flex-end;
+  transition: 0.15s ease-in;
+}
+.event-type-btn-wrapper {
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 9px;
+  height: 25px;
+}
+.event-type-btn-wrapper button {
+  height: inherit;
+}
+.event-type-btn-wrapper button:first-child {
+  /* single day 버튼 */
+  border-radius: 7px 0px 0px 7px;
+}
+.event-type-btn-wrapper button:last-of-type {
+  /* multi day 버튼 */
+  border-radius: 0px 7px 7px 0px;
+}
+.event-type-btn-wrapper button:hover {
+  background-color: rgb(180, 180, 180);
+}
+.event-type-btn-wrapper button:focus {
+  background-color: #003cff;
+  color: white;
+}
+
+/* important 버튼---------------------------------- */
+.important-btn {
+  width: 40px;
+  /* border: none; */
+  border-radius: 5px;
+  box-shadow: #ddd 1.2px 1.8px;
+  transition: 0.2s ease-in;
+  height: 30px;
+}
+.important-btn:hover {
+  background-color: #ffbaba;
+  /* height: auto; */
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  font-family: "Pretendard-Regular";
+}
