@@ -1,65 +1,211 @@
 .event-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  padding: 35px 12px 0px 12px;
+  position: relative;
 }
-.color-palette {
+
+.event-form-topic-wrapper {
   display: flex;
-  gap: 10px;
-}
-.color-swatch {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
+  width: 100%;
+  align-items: center;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  padding-right: 8px;
 }
 
-.color-swatch.selected {
-  border-color: black;
+.event-form-title {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
 }
-.event-form h2 {
-  margin-bottom: 20px;
-}
-
-.event-form label {
-  margin-bottom: 10px;
-}
-
 .event-form input {
   padding: 8px;
   margin-top: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  height: 23px;
 }
 
+.event-form-title input {
+  flex: 1;
+  border: none;
+  margin: 0;
+  outline: none;
+}
+
+.date-form {
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.date-form input {
+  margin: 0;
+  border: none;
+  outline: none;
+  padding-left: 12px;
+  font-size: 15px;
+}
+
+/* event background color palette------------------------------- */
+.color-palette-button {
+  margin-right: 3px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.color-palette {
+  display: flex;
+  position: absolute;
+  left: 275px;
+  top: 29px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.13);
+  z-index: 100;
+  animation: move 0.5s, appear 0.3s;
+}
+
+@keyframes move {
+  from {
+    transform: translateX(-20px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+.color-swatch {
+  width: 16px;
+  height: 16px;
+  margin: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s ease-in;
+}
+.color-swatch:hover {
+  transform: scale(1.2);
+}
+
+.color-swatch.selected {
+  border-color: rgb(207, 207, 207);
+}
+
+/* ----------------- letter/line above time form */
+.time-form-letter-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px 8px 0px;
+}
+
+.time-form-letter {
+  width: auto;
+  margin: 0 8px;
+  font-size: 11.5px;
+  color: rgb(138, 138, 138);
+}
+.time-form-line {
+  width: 37%;
+  height: 1px;
+  background-color: rgb(216, 216, 216);
+}
+
+/* ---------------------time form---------- */
 .form-group {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
+}
+
+.time-form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.time-form-group input {
+  width: 106.5px;
+  margin-bottom: 12px;
+}
+
+/* multiday css--------------------------------------------- */
+.time-form-letter-wrapper-multi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px 0 17px 0;
+}
+
+.form-group-multiday {
+  margin: 15px 0px 18px 0px;
+}
+.form-group-multiday svg {
+  margin: 5px 5px 0 0;
+}
+
+.form-start-multiday,
+.form-end-multiday {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.form-group-multiday input {
+  width: 90px;
+}
+
+.form-start-multiday input:first-child,
+.form-end-multiday input:first-child {
+  margin-right: 5px;
 }
 
 .form-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: column;
 }
 
 .form-actions button {
-  padding: 10px 20px;
-  margin-left: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
+  background-color: transparent;
   cursor: pointer;
+  width: 100%;
+  height: 43px;
+  transition: 0.2s;
+}
+.form-actions button:hover {
+  transform: scale(1.02);
 }
 
 .form-actions button:first-of-type {
-  background-color: #3498db;
+  background-color: #003cff;
   color: white;
+  margin-bottom: 5px;
 }
 
 .form-actions button:last-of-type {
-  background-color: #e74c3c;
+  background-color: #c5c5c5;
   color: white;
+}
+
+.form-actions button:last-of-type:hover {
+  background-color: #e74c3c;
 }

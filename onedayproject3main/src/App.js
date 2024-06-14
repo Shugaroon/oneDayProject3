@@ -96,6 +96,7 @@ const App = () => {
     setProjects([...projects, newProject]);
     setShowAddProjectModal(false);
   };
+  // const onImportantSet = () => {};
 
   const openThemeModal = themeIconRef => {
     setThemeModalAnchor(themeIconRef);
@@ -323,22 +324,32 @@ const AddEventModal = ({
       >
         <div className="event-type-selector">
           <button
-            className={!isMultiDay ? "active" : ""}
-            onClick={() => setIsMultiDay(false)}
+            className="important-btn"
+            type="button"
+            // onClick={onImportantSet}
           >
-            Single Day
+            🚨
           </button>
-          <button
-            className={isMultiDay ? "active" : ""}
-            onClick={() => setIsMultiDay(true)}
-          >
-            Multi Day
-          </button>
+          <div className="event-type-btn-wrapper">
+            <button
+              className={!isMultiDay ? "active" : ""}
+              onClick={() => setIsMultiDay(false)}
+            >
+              Single Day
+            </button>
+            <button
+              className={isMultiDay ? "active" : ""}
+              onClick={() => setIsMultiDay(true)}
+            >
+              Multi Day
+            </button>
+          </div>
         </div>
         <EventForm
           isMultiDay={isMultiDay}
           onSave={event => handleSaveEvent(event, projectId)}
           onCancel={() => setShowAddEventModal(false)}
+          // onImportantSet={onImportantSet}
         />
       </Modal>
     )
