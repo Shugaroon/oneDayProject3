@@ -25,12 +25,14 @@
 
 .form-actions button {
   padding: 10px 20px;
+  margin-left: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .form-actions button:first-of-type {
+  background-color: #3498db;
   color: white;
 }
 

@@ -11,16 +11,18 @@ const ProjectForm = ({ onSave, onCancel }) => {
 
   return (
     <form className="project-form" onSubmit={handleSubmit}>
-      <p>Create Project</p>
-      <input
-        placeholder="Project Name"
-        type="text"
-        value={projectName}
-        onChange={e => setProjectName(e.target.value)}
-        required
-      />
+      <h2>Create Project</h2>
+      <label>
+        Project Name:
+        <input
+          type="text"
+          value={projectName}
+          onChange={e => setProjectName(e.target.value)}
+          required
+        />
+      </label>
       <div className="form-actions">
-        <button type="submit">Create</button>
+        <button type="submit">Save</button>
         <button type="button" onClick={onCancel}>
           Cancel
         </button>

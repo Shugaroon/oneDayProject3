@@ -274,6 +274,17 @@ const AppContent = ({
             </Routes>
           </div>
         </div>
+        {showAddProjectModal && (
+          <Modal
+            isOpen={showAddProjectModal}
+            onClose={() => setShowAddProjectModal(false)}
+          >
+            <ProjectForm
+              onSave={handleSaveProject}
+              onCancel={() => setShowAddProjectModal(false)}
+            />
+          </Modal>
+        )}
       </div>
       {showAddProjectModal && (
         <Modal
@@ -326,7 +337,7 @@ const AddEventModal = ({
           <button
             className="important-btn"
             type="button"
-            // onClick={onImportantSet}
+            // onClick={onImportantSet}a
           >
             🚨
           </button>
