@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .home-text {
@@ -36,11 +36,25 @@
 }
 
 .search-input {
-  width: 90%;
+  width: 80%;
   padding: 10px;
+
   margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-image: url(../components/img/icon\ _search.svg);
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: 7px center;
+}
+
+input[type="text"] {
+  padding-left: 30px;
+}
+
+.search-input::placeholder {
+  position: absolute;
+  left: 30px;
 }
 
 .menu {
