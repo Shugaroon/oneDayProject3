@@ -1,38 +1,39 @@
-.project-selection {
-  display: flex;
-  gap: 20px;
+.project-content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
   padding: 20px;
-  justify-content: center; /* 가운데 정렬 */
 }
 
 .project-card {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 200px;
+  min-width: 200px;
   background-color: #f0f0f0;
   border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.2s;
+  padding: 20px;
 }
 
 .project-card:hover {
   transform: scale(1.05);
 }
 
-.plus-icon {
-  font-size: 50px;
-  color: #888;
+.add-project-card {
+  background-color: #f0f0f0;
+  cursor: pointer;
 }
 
-.project-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.add-project-card:hover {
+  background-color: #eeeeee;
 }
 
-.project-info {
-  text-align: center;
+.project-title {
   margin-top: 10px;
+  font-size: 18px;
 }

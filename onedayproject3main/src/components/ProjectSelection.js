@@ -5,25 +5,22 @@ import "../css/ProjectSelection.css";
 const ProjectSelection = ({ projects, onAddProject }) => {
   const navigate = useNavigate();
 
-  const handleSelectProject = projectId => {
+  const handleProjectClick = projectId => {
     navigate(`/calendar/${projectId}`);
   };
 
   return (
-    <div className="project-selection">
-      <div className="project-card" onClick={onAddProject}>
-        <div className="plus-icon">+</div>
+    <div className="project-content-wrapper">
+      <div className="project-card add-project-card" onClick={onAddProject}>
+        + Add Project
       </div>
       {projects.map(project => (
         <div
           key={project.id}
           className="project-card"
-          onClick={() => handleSelectProject(project.id)}
+          onClick={() => handleProjectClick(project.id)}
         >
-          <div className="project-info">
-            <h3>{project.title}</h3>
-            <p>edited {project.edited.toLocaleString()}</p>
-          </div>
+          <div className="project-title">{project.name}</div>
         </div>
       ))}
     </div>
