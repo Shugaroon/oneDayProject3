@@ -84,6 +84,7 @@ input[type="text"] {
   cursor: pointer;
   padding: 7px 9px;
   border-radius: 5px;
+  transition: transform 0.3s ease;
 }
 
 .badge {
@@ -93,13 +94,6 @@ input[type="text"] {
   border-radius: 6px;
   margin-left: 90px;
 }
-
 .submenu-item:hover {
-  background-color: #1530fa;
-  color: #fff;
-}
-
-.submenu-item:hover .badge {
-  background-color: #fff;
-  color: #1530fa;
+  transform: scale(1.05);
 }
