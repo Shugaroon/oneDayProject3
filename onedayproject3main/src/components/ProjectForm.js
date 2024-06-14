@@ -11,7 +11,7 @@ const ProjectForm = ({ onSave, onCancel }) => {
 
   return (
     <form className="project-form" onSubmit={handleSubmit}>
-      <h2>Create Project</h2>
+      <p>Create Project</p>
       <input
         placeholder="Project Name"
         type="text"
