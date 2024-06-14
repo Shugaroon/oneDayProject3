@@ -156,6 +156,7 @@
   flex-direction: column;
   height: 100%;
   padding: 20px;
+  flex: 1; /* 플렉스 1 추가함 */
 }
 .rbc-off-range-bg {
   background-color: #fffcfc;

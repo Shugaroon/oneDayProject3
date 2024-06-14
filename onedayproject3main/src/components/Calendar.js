@@ -7,7 +7,15 @@ import "../css/Calendar.css";
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendar = ({ date, view, onNavigate, onView, onAddEvent, events }) => {
+const MyCalendar = ({
+  date,
+  view,
+  onNavigate,
+  onView,
+  onAddEvent,
+  events,
+  projectId,
+}) => {
   const eventStyleGetter = event => {
     const isSingleDay = event.start.toDateString() === event.end.toDateString();
     const style = isSingleDay
@@ -63,10 +71,10 @@ const MyCalendar = ({ date, view, onNavigate, onView, onAddEvent, events }) => {
       />
       <BigCalendar
         localizer={localizer}
-        events={events}
+        events={events.filter(event => event.projectId === projectId)}
         startAccessor="start"
         endAccessor="end"
-        style={{ flexGrow: 1 }}
+        style={{ flexGrow: 1, flex: 1 }}
         date={date}
         view={view}
         onNavigate={onNavigate}

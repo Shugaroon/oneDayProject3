@@ -1,0 +1,34 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003cff;
+    height: 100vh;
+}
+
+.white-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    width: 1600px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(240, 240, 240);
+    height: 80%;
+    width: 25%;
+    border-radius: 100px;
+}
