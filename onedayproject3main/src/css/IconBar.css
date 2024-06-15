@@ -1,43 +1,91 @@
 .icon-bar {
-    width: 60px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
-    transition: width 0.3s ease, visibility 0.3s, opacity 0.3s ease;
+  width: 60px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  transition: width 0.3s ease, visibility 0.3s, opacity 0.3s ease;
 }
 
 .icon-bar.hidden {
-    width: 0;
-    visibility: hidden;
-    opacity: 0;
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .icon-bar.open {
-    width: 60px;
-    visibility: visible;
-    opacity: 1;
+  width: 60px;
+  visibility: visible;
+  opacity: 1;
 }
 
 .hamburger-button {
-    font-size: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .icon {
-    font-size: 24px;
-    margin: 20px 0;
-    cursor: pointer;
+  font-size: 24px;
+  margin: 20px 0;
+  cursor: pointer;
 }
 
 /* 슈머*/
 
 .icon-modal {
-    font-size: 11px;
+  visibility: hidden;
+  font-size: 11px;
+  transition: opacity 0.5s ease-in-out, visibility 0.1s ease-in-out;
+}
+
+@keyframes modal-appear {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes modal-appear2 {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes disappear {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes disappear2 {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.icon-modal.show {
+  visibility: visible;
+  animation: modal-appear 0.3s, modal-appear2 0.5s;
+}
+
+.icon-modal.hide {
+  visibility: hidden;
+  animation: disappear 0.3s, disappear2 0.3s;
 }
