@@ -16,6 +16,7 @@ import EventForm from "./components/EventForm";
 import ProjectSelection from "./components/ProjectSelection";
 import ProjectForm from "./components/ProjectForm";
 import ThemeModal from "./components/ThemeModal";
+import EventModal from "./components/EventModal"; // EventModal 추가
 import "./App.css";
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
   const [themeColor, setThemeColor] = useState(savedThemeColor);
   const [isMultiDay, setIsMultiDay] = useState(false);
   const [themeModalAnchor, setThemeModalAnchor] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null); // 여기 추가
 
   const updateElementStyles = useCallback(() => {
     const elements = document.querySelectorAll(
@@ -85,6 +87,20 @@ const App = () => {
   const handleSaveEvent = (event, projectId) => {
     setEvents([...events, { ...event, projectId }]);
     setShowAddEventModal(false);
+  };
+
+  const handleUpdateEvent = updatedEvent => {
+    setEvents(
+      events.map(event => (event.id === updatedEvent.id ? updatedEvent : event))
+    );
+  };
+
+  const handleDeleteEvent = eventId => {
+    setEvents(events.filter(event => event.id !== eventId));
+  };
+
+  const handleEventSelect = event => {
+    setSelectedEvent(event);
   };
 
   const handleAddProject = () => {
@@ -140,6 +156,11 @@ const App = () => {
         isMultiDay={isMultiDay}
         setIsMultiDay={setIsMultiDay}
         themeModalAnchor={themeModalAnchor}
+        selectedEvent={selectedEvent} // 여기 추가
+        setSelectedEvent={setSelectedEvent} // 여기 추가
+        handleEventSelect={handleEventSelect}
+        handleUpdateEvent={handleUpdateEvent}
+        handleDeleteEvent={handleDeleteEvent}
       />
     </Router>
   );
@@ -170,6 +191,11 @@ const AppContent = ({
   isMultiDay,
   setIsMultiDay,
   themeModalAnchor,
+  selectedEvent,
+  setSelectedEvent, // 여기 추가
+  handleEventSelect,
+  handleUpdateEvent,
+  handleDeleteEvent,
 }) => {
   const location = useLocation();
 
@@ -234,6 +260,7 @@ const AppContent = ({
                     isMultiDay={isMultiDay}
                     setIsMultiDay={setIsMultiDay}
                     themeColor={themeColor}
+                    handleEventSelect={handleEventSelect}
                   />
                 }
               />
@@ -252,6 +279,7 @@ const AppContent = ({
                       onView={handleViewChange}
                       onAddEvent={handleAddEvent}
                       events={events}
+                      handleEventSelect={handleEventSelect}
                     />
                   </div>
                 }
@@ -305,6 +333,15 @@ const AppContent = ({
           anchorRef={themeModalAnchor}
         />
       )}
+      {selectedEvent && (
+        <EventModal
+          isOpen={!!selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+          event={selectedEvent}
+          onSave={handleUpdateEvent}
+          onDelete={handleDeleteEvent}
+        />
+      )}
     </div>
   );
 };
@@ -337,7 +374,7 @@ const AddEventModal = ({
           <button
             className="important-btn"
             type="button"
-            // onClick={onImportantSet}a
+            // onClick={onImportantSet}
           >
             🚨
           </button>

@@ -15,6 +15,7 @@ const MyCalendar = ({
   onAddEvent,
   events,
   projectId,
+  handleEventSelect,
 }) => {
   const eventStyleGetter = event => {
     const isSingleDay = event.start.toDateString() === event.end.toDateString();
@@ -85,6 +86,7 @@ const MyCalendar = ({
         components={{
           event: EventComponent,
         }}
+        onSelectEvent={handleEventSelect}
       />
     </div>
   );
