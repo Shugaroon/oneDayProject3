@@ -7,6 +7,7 @@ export default function App() {
       <div className="white-container">
         <div className="signUp-container">
           <div className="SignUp-form-wrapper">
+            <p></p>
             <SignUpForm />
           </div>
         </div>
