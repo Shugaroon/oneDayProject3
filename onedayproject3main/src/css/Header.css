@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 5px 20px 40px 20px;
+  /* padding: 20px; */
   background-color: #fff;
 }
 .team-profiles {
@@ -24,26 +25,40 @@
   color: black;
 }
 
+.other-users {
+  margin-right: 10px;
+}
 .profile-pic {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   margin-left: -10px;
   border: 2px solid #fff;
 }
+.profile1 {
+  z-index: 3;
+}
+.profile2 {
+  z-index: 2;
+}
+.profile3 {
+  z-index: 1;
+}
 .more-profiles {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
-  background-color: #3498db;
+  background-color: #e7e7e7;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: -10px;
   border: 2px solid #fff;
+  font-size: 13px;
 }
 
 .username {
-  margin-right: 10px;
+  /* margin-left: ; */
+  font-size: 15px;
 }

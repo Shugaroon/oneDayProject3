@@ -85,7 +85,7 @@ html {
   justify-content: center;
   align-items: center;
   transition: margin-left 0.3s ease;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
 }
 
 .content-wrapper.sidebar-open {

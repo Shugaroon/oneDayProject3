@@ -6,21 +6,21 @@
 .navigation-with-dropdown button {
   background: none;
   border: 1px solid #ddd;
-  padding: 5px 10px;
+  padding: 4px 8px;
   cursor: pointer;
-  margin: 0 5px;
-  border-radius: 4px;
+  margin: 5px 0;
+  border-radius: 6px;
 }
 
 .navigation-with-dropdown .dropdown {
   position: relative;
-  margin: 0 10px;
+  /* margin: 0 px; */
   cursor: pointer;
 }
 
 .navigation-with-dropdown .dropdown span {
   display: inline-block;
-  padding: 5px 10px;
+  /* padding: 0px 5px; */
 }
 
 .navigation-with-dropdown .year {

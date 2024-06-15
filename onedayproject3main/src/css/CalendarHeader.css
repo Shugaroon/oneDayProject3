@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 0px 15px 0px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
@@ -21,15 +21,16 @@
 
 .view-title {
   font-size: 16px;
-  font-weight: bold;
-  margin-left: 20px;
+  font-weight: 100px;
+  margin-left: 10px;
 }
 
 .add-event-button {
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 11px 17px;
+  border-radius: 10px;
   cursor: pointer;
+  margin-left: 10px;
 }

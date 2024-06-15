@@ -15,10 +15,10 @@
 
 .dropdown {
   margin: 0 10px;
-  padding: 5px;
-  font-size: 16px;
+  padding: 4px;
+  font-size: 17px;
   cursor: pointer;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 1.5px solid #3498db;
   position: relative;
 }
 
@@ -46,19 +46,6 @@
 
 .dropdown-content div:hover {
   background-color: #ddd;
-}
-
-.add-event-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-event-button:hover {
-  background-color: #2980b9;
 }
 
 @keyframes fadeIn {
@@ -155,7 +142,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px;
+  padding: 0px 10px 20px 20px;
   flex: 1; /* 플렉스 1 추가함 */
 }
 .rbc-off-range-bg {
