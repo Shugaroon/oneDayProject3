@@ -1,35 +1,36 @@
 a {
-    text-decoration: none;
-    color: #003cff;
-    font-weight: bold;
+  text-decoration: none;
+  color: #003cff;
+  font-weight: bold;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #003cff;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #003cff;
+  height: 100vh;
 }
 
 .white-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 800px;
-    width: 1600px;
-    background-color: white;
-    border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  width: 1600px;
+  background-color: white;
+  border-radius: 50px;
 }
 
 .signUp-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 3px solid rgb(240, 240, 240);
-    height: 60%;
-    width: 25%;
-    border-radius: 100px;
-    padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid rgb(240, 240, 240);
+  height: 60%;
+  width: 25%;
+  border-radius: 100px;
+  padding: 50px;
 }
+/*test */
