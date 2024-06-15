@@ -155,6 +155,11 @@
   align-items: center;
   z-index: 1000;
 }
+
+.rbc-today {
+  background-color: #f1f1f5;
+}
+
 .my-calendar {
   display: flex;
   flex-direction: column;
