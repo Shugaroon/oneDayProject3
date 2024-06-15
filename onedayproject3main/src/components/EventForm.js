@@ -92,9 +92,9 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
               <path
                 d="M7.11111 1V6M16.8889 1V6M1 11H23M3.44444 3.5H20.5556C21.9056 3.5 23 4.61929 23 6V23.5C23 24.8807 21.9056 26 20.5556 26H3.44444C2.09441 26 1 24.8807 1 23.5V6C1 4.61929 2.09441 3.5 3.44444 3.5Z"
                 stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <DatePicker
