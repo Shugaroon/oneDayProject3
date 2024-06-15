@@ -6,21 +6,20 @@
 .navigation-with-dropdown button {
   background: none;
   border: 1px solid #ddd;
-  padding: 4px 8px;
+  padding: 3px 6px;
   cursor: pointer;
-  margin: 5px 0;
   border-radius: 6px;
+  font-size: 11px;
+  color: gray;
 }
 
 .navigation-with-dropdown .dropdown {
   position: relative;
-  /* margin: 0 px; */
   cursor: pointer;
 }
 
 .navigation-with-dropdown .dropdown span {
   display: inline-block;
-  /* padding: 0px 5px; */
 }
 
 .navigation-with-dropdown .year {

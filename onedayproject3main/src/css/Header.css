@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px 40px 20px;
+  padding: 5px 20px 60px 20px;
   /* padding: 20px; */
   background-color: #fff;
 }
@@ -25,40 +25,51 @@
   color: black;
 }
 
-.other-users {
-  margin-right: 10px;
-}
 .profile-pic {
-  width: 35px;
-  height: 35px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
-  margin-left: -10px;
   border: 2px solid #fff;
 }
 .profile1 {
   z-index: 3;
+  margin-left: -10px;
 }
 .profile2 {
   z-index: 2;
+  margin-left: -10px;
 }
 .profile3 {
   z-index: 1;
+  margin-left: -10px;
 }
 .more-profiles {
-  width: 35px;
-  height: 35px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
   background-color: #e7e7e7;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -10px;
+  margin: 0 15px 0 -10px;
   border: 2px solid #fff;
   font-size: 13px;
 }
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-top: 14px; */
+  position: relative;
+}
 
 .username {
-  /* margin-left: ; */
-  font-size: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 41px 0 0 1px;
+  color: rgb(92, 92, 92);
+  position: absolute;
+  text-align: center;
+  width: 120px;
 }
