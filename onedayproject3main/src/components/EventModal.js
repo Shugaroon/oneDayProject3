@@ -1,78 +1,75 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./Modal";
-import EventForm from "./EventForm";
+import "../css/EventModal.css"; // 새로운 CSS 파일 가져오기
 
 const EventModal = ({ isOpen, onClose, event, onSave, onDelete }) => {
-  const [eventData, setEventData] = useState(event);
+  const [title, setTitle] = useState(event.title);
+  const [start, setStart] = useState(event.start);
+  const [end, setEnd] = useState(event.end);
+  const [memo, setMemo] = useState(event.memo || "");
 
   useEffect(() => {
-    setEventData(event);
+    setTitle(event.title);
+    setStart(event.start);
+    setEnd(event.end);
+    setMemo(event.memo || "");
   }, [event]);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setEventData(prevEvent => ({
-      ...prevEvent,
-      [name]: value,
-    }));
+  const formatDate = date => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
   const handleSave = () => {
-    onSave(eventData);
-    onClose();
-  };
-
-  const handleDelete = () => {
-    onDelete(eventData.id);
+    onSave({ ...event, title, start, end, memo });
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="event-modal-content">
-        <h2>Edit Event</h2>
-        <div>
-          <label>Topic:</label>
-          <input
-            type="text"
-            name="title"
-            value={eventData.title || ""}
-            onChange={handleChange}
-          />
+    isOpen && (
+      <div className="event-modal-overlay">
+        <div className="event-modal">
+          <h2>Edit Event</h2>
+          <label>
+            Title:
+            <input
+              type="text"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
+          </label>
+          <label>
+            Start:
+            <input
+              type="datetime-local"
+              value={formatDate(start)}
+              onChange={e => setStart(new Date(e.target.value))}
+            />
+          </label>
+          <label>
+            End:
+            <input
+              type="datetime-local"
+              value={formatDate(end)}
+              onChange={e => setEnd(new Date(e.target.value))}
+            />
+          </label>
+          <label>
+            Memo:
+            <textarea value={memo} onChange={e => setMemo(e.target.value)} />
+          </label>
+          <div className="modal-buttons">
+            <button onClick={handleSave}>Save</button>
+            <button onClick={() => onDelete(event.id)}>Delete</button>
+            <button onClick={onClose}>Close</button>
+          </div>
         </div>
-        <div>
-          <label>Start Date and Time:</label>
-          <input
-            type="datetime-local"
-            name="start"
-            value={eventData.start || ""}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>End Date and Time:</label>
-          <input
-            type="datetime-local"
-            name="end"
-            value={eventData.end || ""}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Memo:</label>
-          <textarea
-            name="memo"
-            value={eventData.memo || ""}
-            onChange={handleChange}
-          />
-        </div>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={onClose}>Close</button>
-        <button onClick={handleDelete} style={{ backgroundColor: "red" }}>
-          Delete
-        </button>
       </div>
-    </Modal>
+    )
   );
 };
 

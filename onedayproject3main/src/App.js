@@ -85,7 +85,8 @@ const App = () => {
   };
 
   const handleSaveEvent = (event, projectId) => {
-    setEvents([...events, { ...event, projectId }]);
+    const newEvent = { ...event, projectId, id: uuidv4() }; // 고유 ID 추가
+    setEvents([...events, newEvent]);
     setShowAddEventModal(false);
   };
 
@@ -97,6 +98,7 @@ const App = () => {
 
   const handleDeleteEvent = eventId => {
     setEvents(events.filter(event => event.id !== eventId));
+    setSelectedEvent(null);
   };
 
   const handleEventSelect = event => {

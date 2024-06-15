@@ -156,9 +156,9 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
               <path
                 d="M22.5 11.25V22.5L30 26.25M41.25 22.5C41.25 32.8553 32.8553 41.25 22.5 41.25C12.1447 41.25 3.75 32.8553 3.75 22.5C3.75 12.1447 12.1447 3.75 22.5 3.75C32.8553 3.75 41.25 12.1447 41.25 22.5Z"
                 stroke="black"
-                stroke-width="2.3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <DatePicker
@@ -189,9 +189,9 @@ const EventForm = ({ onSave, onCancel, isMultiDay, onImportantSet }) => {
               <path
                 d="M22.5 11.25V22.5L17.8125 30M41.25 22.5C41.25 32.8553 32.8553 41.25 22.5 41.25C12.1447 41.25 3.75 32.8553 3.75 22.5C3.75 12.1447 12.1447 3.75 22.5 3.75C32.8553 3.75 41.25 12.1447 41.25 22.5Z"
                 stroke="black"
-                stroke-width="2.3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <DatePicker
