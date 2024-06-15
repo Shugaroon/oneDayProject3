@@ -13,9 +13,9 @@ const CalendarHeader = ({ date, view, onNavigate, onView, onAddEvent }) => {
         ) : (
           <NavigationButtons date={date} view={view} onNavigate={onNavigate} />
         )}
-        <ViewModeButtons onView={onView} view={view} />
       </div>
       <div className="right-container">
+        <ViewModeButtons onView={onView} view={view} />
         <button className="add-event-button" onClick={onAddEvent}>
           + add event
         </button>

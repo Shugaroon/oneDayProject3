@@ -11,16 +11,18 @@ const Header = () => {
     <div className="header">
       <div className="left-container">
         <Link to="/" className="home-link">
-          <span className="home-text">Home(logo)</span>
+          <span className="home-text">TEAM KOK</span>
         </Link>
       </div>
       <div className="right-container">
-        <img src={profile1} alt="Profile 1" className="profile-pic" />
-        <img src={profile2} alt="Profile 2" className="profile-pic" />
-        <img src={profile3} alt="Profile 3" className="profile-pic" />
+        <img src={profile1} alt="Profile 1" className="profile-pic profile1" />
+        <img src={profile2} alt="Profile 2" className="profile-pic profile2" />
+        <img src={profile3} alt="Profile 3" className="profile-pic profile3" />
         <div className="more-profiles">+5</div>
-        <span className="username">unknown</span>
-        <img src={myProfile} alt="My Profile" className="profile-pic" />
+        <div className="user-wrapper">
+          <img src={myProfile} alt="My Profile" className="profile-pic" />
+          <div className="username">user</div>
+        </div>
       </div>
     </div>
   );

@@ -14,11 +14,11 @@
 }
 
 .dropdown {
-  margin: 0 10px;
+  margin: 0px 3px;
   padding: 5px;
-  font-size: 16px;
+  font-size: 17px;
   cursor: pointer;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 1.5px solid #3498db;
   position: relative;
 }
 
@@ -46,19 +46,6 @@
 
 .dropdown-content div:hover {
   background-color: #ddd;
-}
-
-.add-event-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-event-button:hover {
-  background-color: #2980b9;
 }
 
 @keyframes fadeIn {
@@ -98,6 +85,9 @@
   font-size: 14px;
 }
 
+.rbc-header {
+  padding: 3px 0;
+}
 .single-day-event {
   background-color: transparent !important;
   color: black !important;
@@ -128,9 +118,23 @@
 }
 
 .rbc-date-cell {
-  color: #555;
+  color: #838383;
 }
 
+.rbc-day-bg.rbc-today {
+  background-color: #f1f1f5;
+}
+.rbc-now button {
+  color: #000000 !important;
+  font-weight: 400;
+}
+
+.rbc-off-range-bg {
+  background-color: #fafafa;
+}
+.rbc-date-cell.rbc-off-range {
+  color: #fafafa;
+}
 .modal {
   background: white;
   padding: 20px;
@@ -151,13 +155,15 @@
   align-items: center;
   z-index: 1000;
 }
+
+.rbc-today {
+  background-color: #f1f1f5;
+}
+
 .my-calendar {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   flex: 1; /* 플렉스 1 추가함 */
-}
-.rbc-off-range-bg {
-  background-color: #fffcfc;
 }
