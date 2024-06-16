@@ -13,7 +13,7 @@
 .project-form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 15px 20px 25px 20px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,12 +25,10 @@
 .form-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.pin-icon {
-  font-size: 24px;
-  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: 550;
 }
 
 .form-body {
@@ -40,9 +38,10 @@
 
 .form-image img {
   width: 362px;
-  height: 293px;
+  height: 310px;
   object-fit: cover;
   border-radius: 10px;
+  margin: 0 10px 0 4px;
 }
 
 .right-section {
@@ -81,18 +80,22 @@
 .checkbox-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
-  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-left: 6px;
+  letter-spacing: 0.1px;
 }
 
 .checkbox-section label {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  font-size: 12px;
+  line-height: 2px;
+  color: rgb(155, 155, 155);
 }
 
 .checkbox-section input[type="checkbox"] {
   margin-right: 10px;
+  height: 10px;
   transform-origin: center;
   transition: transform 0.2s ease-in-out;
 }
@@ -101,26 +104,7 @@
   transform: scale(1.12);
 }
 
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-.form-actions button {
-  padding: 10px 20px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-
 .form-inputs input {
-  margin-left: 10px;
-  border-radius: 16px;
-}
-
-.form-actions button {
+  margin-left: 3px;
   border-radius: 16px;
 }

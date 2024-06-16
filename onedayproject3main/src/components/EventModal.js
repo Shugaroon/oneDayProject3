@@ -34,7 +34,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, onDelete }) => {
       <div className="event-modal-overlay">
         <div className="event-modal">
           <div className="modal-header-wrapper">
-            <h3>Edit Event✏️</h3>
+            <h3>Edit Event ✏️</h3>
             <button
               className="modal-buttons"
               onClick={() => onDelete(event.id)}

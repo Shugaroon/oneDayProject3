@@ -16,7 +16,6 @@ const ProjectForm = ({ onSave, onCancel }) => {
     <div className="project-modal">
       <form className="project-form" onSubmit={handleSubmit}>
         <div className="form-header">
-          <span className="pin-icon"></span>
           <p>Create New</p>
         </div>
         <div className="form-body">
@@ -45,7 +44,7 @@ const ProjectForm = ({ onSave, onCancel }) => {
                     checked={isSpecialProject}
                     onChange={() => setIsSpecialProject(!isSpecialProject)}
                   />
-                  special project
+                  Group Project
                 </label>
                 <label>
                   <input
@@ -53,7 +52,7 @@ const ProjectForm = ({ onSave, onCancel }) => {
                     checked={isLoremChecked}
                     onChange={() => setIsLoremChecked(!isLoremChecked)}
                   />
-                  Lorem ipsum
+                  Terms of Service
                 </label>
               </div>
               <button type="submit">Create</button>

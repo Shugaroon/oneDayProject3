@@ -1,6 +1,6 @@
 .view-mode-buttons {
   display: flex;
-  border: 1px solid #ddd;
+  border: 1px solid #cecece;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -12,6 +12,7 @@
   cursor: pointer;
   margin: 0;
   color: rgb(255, 131, 131);
+  transition: 0.1s ease;
 }
 
 .view-mode-buttons .view-mode-button.active {
@@ -24,9 +25,9 @@
 }
 
 .view-mode-buttons .view-mode-button:first-child {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #cecece;
 }
 
 .view-mode-buttons .view-mode-button:nth-child(2) {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #cecece;
 }

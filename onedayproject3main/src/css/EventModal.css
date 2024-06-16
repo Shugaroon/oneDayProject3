@@ -13,9 +13,8 @@
 
 .event-modal {
   background: white;
-  padding: 30px 30px 40px 30px;
-  border-radius: 20px;
-  height: 355px;
+  padding: 34px 40px 32px 40px;
+  border-radius: 27px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   max-width: 45%;
@@ -38,12 +37,32 @@
   margin: 0;
   width: 10%;
 }
+
+.modal-header-wrapper button {
+  background-color: #ff6a6a;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  font-size: 12px;
+  border-radius: 9px;
+}
+
 .date-start-wrapper,
 .date-end-wrapper {
   display: flex;
   flex-direction: column;
+  width: 160px;
 }
 
+.date-letter {
+  width: auto;
+  margin: 2px 5px;
+  font-size: 13px;
+  color: rgb(58, 58, 58);
+}
+.date-start-wrapper {
+  margin-right: 5px;
+}
 .event-modal input[type="text"],
 .event-modal input[type="datetime-local"],
 .event-modal textarea {
@@ -51,18 +70,24 @@
   margin: 5px 0 15px 0;
   border: 1px solid #ccc;
   border-radius: 13px;
-  font-size: 16px;
+  font-size: 14px;
 }
 .event-modal input[type="text"] {
   width: 93%;
+  margin-bottom: 11px;
+  outline: none;
 }
 .event-modal input[type="datetime-local"] {
-  width: 55%;
+  width: 84%;
 }
 .event-modal textarea {
   width: 93%;
-  height: 100px;
+  height: 120px;
   resize: vertical;
+  outline: none;
+}
+.event-modal textarea::placeholder {
+  color: rgb(196, 196, 196);
 }
 
 .modal-buttons {
@@ -81,7 +106,7 @@
 }
 
 .modal-buttons button:first-child {
-  background-color: #4caf50;
+  background-color: #003cff;
   color: white;
   margin-bottom: 5px;
 }
@@ -94,4 +119,8 @@
 .modal-buttons button:last-of-type:hover {
   background-color: #e74c3c;
   color: white;
+}
+
+.modal-actions button:hover {
+  transform: scale(1.02);
 }

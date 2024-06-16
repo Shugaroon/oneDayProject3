@@ -122,15 +122,15 @@
 }
 
 .rbc-day-bg.rbc-today {
-  background-color: #f1f1f5;
+  background-color: white;
 }
 .rbc-now button {
   color: #000000 !important;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .rbc-now button::before {
-  content: "📌";
+  content: "📌    ";
   font-size: 13px;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .rbc-today {
-  background-color: #f1f1f5;
+  background-color: white;
 }
 
 .my-calendar {

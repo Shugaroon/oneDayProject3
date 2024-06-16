@@ -126,6 +126,7 @@ html {
   align-items: flex-end;
   transition: 0.15s ease-in;
 }
+
 .event-type-btn-wrapper {
   border: 1px solid rgb(180, 180, 180);
   border-radius: 9px;
