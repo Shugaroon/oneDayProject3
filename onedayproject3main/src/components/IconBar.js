@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom"; // 링크 추가
 import "../css/IconBar.css";
 
 const IconBar = ({ toggleSidebar, openThemeModal }) => {
@@ -8,44 +9,49 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
   const [modal4Open, setModal4Open] = useState(false);
   const [modal5Open, setModal5Open] = useState(false);
   const themeIconRef = useRef(null);
+
   return (
     <div className="icon-bar">
       <button className="hamburger-button" onClick={toggleSidebar}>
         &#9776;
       </button>
-      <div
+      <Link
+        to="#"
         className="icon icon1"
         onMouseOver={() => setModal1Open(true)}
         onMouseOut={() => setModal1Open(false)}
       >
         🏠
-      </div>
+      </Link>
       <span className={`icon-modal ${modal1Open ? "show" : "hide"}`}>HOME</span>
-      <div
+      <Link
+        to="#"
         className="icon icon2"
         onMouseOver={() => setModal2Open(true)}
         onMouseOut={() => setModal2Open(false)}
       >
         📅
-      </div>
+      </Link>
       <span className={`icon-modal ${modal2Open ? "show" : "hide"}`}>
         CALENDER
       </span>
-      <div
+      <Link
+        to="#"
         className="icon icon3"
         onMouseOver={() => setModal3Open(true)}
         onMouseOut={() => setModal3Open(false)}
       >
         💬
-      </div>
+      </Link>
       <span className={`icon-modal ${modal3Open ? "show" : "hide"}`}>CHAT</span>
-      <div
+      <Link
+        to="#"
         className="icon icon4"
         onMouseOver={() => setModal4Open(true)}
         onMouseOut={() => setModal4Open(false)}
       >
         ⚙️
-      </div>
+      </Link>
       <span className={`icon-modal ${modal4Open ? "show" : "hide"}`}>
         SETTING
       </span>

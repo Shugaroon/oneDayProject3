@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // 링크 추가
 import "../css/Sidebar.css";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -16,26 +17,42 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="menu-container">
           <div className="menu-item">Tasks</div>
           <div className="submenu">
-            <div className="submenu-item upcoming">
+            <Link to="#" className="submenu-item upcoming">
               📅 Upcoming <span className="badge">5</span>
-            </div>
-            <div className="submenu-item important">🚨 Important</div>
-            <div className="submenu-item notification">🔔 Notification</div>
-            <div className="submenu-item event">🎉 Event</div>
+            </Link>
+            <Link to="#" className="submenu-item important">
+              🚨 Important
+            </Link>
+            <Link to="#" className="submenu-item notification">
+              🔔 Notification
+            </Link>
+            <Link to="#" className="submenu-item event">
+              🎉 Event
+            </Link>
           </div>
         </div>
         <div className="menu-container">
           <div className="menu-item">Community</div>
           <div className="submenu">
-            <div className="submenu-item chat">💬 Chat</div>
-            <div className="submenu-item member">👥 Members</div>
+            <Link to="#" className="submenu-item chat">
+              💬 Chat
+            </Link>
+            <Link to="#" className="submenu-item member">
+              👥 Members
+            </Link>
           </div>
         </div>
 
         <div className="menu-container">
-          <div className="menu-item theme">🎨 Theme</div>
-          <div className="menu-item setting">⚙️ Settings</div>
-          <div className="menu-item logout">🚪 Log out</div>
+          <Link to="#" className="menu-item theme">
+            🎨 Theme
+          </Link>
+          <Link to="#" className="menu-item setting">
+            ⚙️ Settings
+          </Link>
+          <Link to="#" className="menu-item logout">
+            🚪 Log out
+          </Link>
         </div>
       </div>
     </div>
