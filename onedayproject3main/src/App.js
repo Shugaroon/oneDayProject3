@@ -17,7 +17,10 @@ import ProjectSelection from "./components/ProjectSelection";
 import ProjectForm from "./components/ProjectForm";
 import ThemeModal from "./components/ThemeModal";
 import EventModal from "./components/EventModal"; // EventModal 추가
+import LoginPage from "./components/LoginPage"; // LoginPage 추가
+import SignUpPage from "./components/SignUpPage"; // SignUpPage 추가
 import "./App.css";
+import OutOfService from "./components/OutOfService";
 
 const App = () => {
   const themes = {
@@ -139,39 +142,52 @@ const App = () => {
 
   return (
     <Router>
-      <AppContent
-        sidebarOpen={sidebarOpen}
-        toggleSidebar={toggleSidebar}
-        themeColor={themeColor}
-        date={date}
-        view={view}
-        handleNavigate={handleNavigate}
-        handleViewChange={handleViewChange}
-        handleAddEvent={handleAddEvent}
-        events={events}
-        projects={projects}
-        handleAddProject={handleAddProject}
-        showAddEventModal={showAddEventModal}
-        setShowAddEventModal={setShowAddEventModal}
-        showAddProjectModal={showAddProjectModal}
-        setShowAddProjectModal={setShowAddProjectModal}
-        showThemeModal={showThemeModal}
-        openThemeModal={openThemeModal}
-        closeThemeModal={closeThemeModal}
-        selectTheme={selectTheme}
-        handleSaveEvent={handleSaveEvent}
-        handleSaveProject={handleSaveProject}
-        isMultiDay={isMultiDay}
-        setIsMultiDay={setIsMultiDay}
-        themeModalAnchor={themeModalAnchor}
-        selectedEvent={selectedEvent}
-        setSelectedEvent={setSelectedEvent}
-        handleEventSelect={handleEventSelect}
-        handleUpdateEvent={handleUpdateEvent}
-        handleDeleteEvent={handleDeleteEvent}
-        isImportant={isImportant} // 여기 추가
-        setIsImportant={setIsImportant} // 여기 추가
-      />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        {/* LoginPage 경로 추가 */}
+        <Route path="/signup" element={<SignUpPage />} />
+        {/* SignUpPage 경로 추가 */}
+        <Route path="/out" element={<OutOfService />} />
+        {/* OutofService 경로 추가 */}
+        <Route
+          path="*"
+          element={
+            <AppContent
+              sidebarOpen={sidebarOpen}
+              toggleSidebar={toggleSidebar}
+              themeColor={themeColor}
+              date={date}
+              view={view}
+              handleNavigate={handleNavigate}
+              handleViewChange={handleViewChange}
+              handleAddEvent={handleAddEvent}
+              events={events}
+              projects={projects}
+              handleAddProject={handleAddProject}
+              showAddEventModal={showAddEventModal}
+              setShowAddEventModal={setShowAddEventModal}
+              showAddProjectModal={showAddProjectModal}
+              setShowAddProjectModal={setShowAddProjectModal}
+              showThemeModal={showThemeModal}
+              openThemeModal={openThemeModal}
+              closeThemeModal={closeThemeModal}
+              selectTheme={selectTheme}
+              handleSaveEvent={handleSaveEvent}
+              handleSaveProject={handleSaveProject}
+              isMultiDay={isMultiDay}
+              setIsMultiDay={setIsMultiDay}
+              themeModalAnchor={themeModalAnchor}
+              selectedEvent={selectedEvent}
+              setSelectedEvent={setSelectedEvent}
+              handleEventSelect={handleEventSelect}
+              handleUpdateEvent={handleUpdateEvent}
+              handleDeleteEvent={handleDeleteEvent}
+              isImportant={isImportant} // 여기 추가
+              setIsImportant={setIsImportant} // 여기 추가
+            />
+          }
+        />
+      </Routes>
     </Router>
   );
 };

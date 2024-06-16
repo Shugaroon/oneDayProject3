@@ -1,12 +1,12 @@
 import "../css/SignUpPage.css";
 import SignUpForm from "./SignUpForm";
 // test
-export default function App() {
+export default function SignUpPage() {
   return (
-    <div className="container">
-      <div className="white-container">
-        <div className="signUp-container">
-          <div className="SignUp-form-wrapper">
+    <div className="SignUpPage-container">
+      <div className="SignUpPage-white-container">
+        <div className="SignUpPage-signUp-container">
+          <div className="SignUpPage-SignUp-form-wrapper">
             <SignUpForm />
           </div>
         </div>
