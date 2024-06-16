@@ -40,6 +40,7 @@ const App = () => {
   const [isMultiDay, setIsMultiDay] = useState(false);
   const [themeModalAnchor, setThemeModalAnchor] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null); // 여기 추가
+  const [isImportant, setIsImportant] = useState(false); // 여기 추가
 
   const updateElementStyles = useCallback(() => {
     const elements = document.querySelectorAll(
@@ -85,9 +86,15 @@ const App = () => {
   };
 
   const handleSaveEvent = (event, projectId) => {
-    const newEvent = { ...event, projectId, id: uuidv4() }; // 고유 ID 추가
+    const newEvent = {
+      ...event,
+      projectId,
+      id: uuidv4(),
+      color: isImportant ? "red" : event.color, // 여기 수정
+    }; // 고유 ID 추가
     setEvents([...events, newEvent]);
     setShowAddEventModal(false);
+    setIsImportant(false); // 여기 추가
   };
 
   const handleUpdateEvent = updatedEvent => {
@@ -114,7 +121,6 @@ const App = () => {
     setProjects([...projects, newProject]);
     setShowAddProjectModal(false);
   };
-  // const onImportantSet = () => {};
 
   const openThemeModal = themeIconRef => {
     setThemeModalAnchor(themeIconRef);
@@ -158,11 +164,13 @@ const App = () => {
         isMultiDay={isMultiDay}
         setIsMultiDay={setIsMultiDay}
         themeModalAnchor={themeModalAnchor}
-        selectedEvent={selectedEvent} // 여기 추가
-        setSelectedEvent={setSelectedEvent} // 여기 추가
+        selectedEvent={selectedEvent}
+        setSelectedEvent={setSelectedEvent}
         handleEventSelect={handleEventSelect}
         handleUpdateEvent={handleUpdateEvent}
         handleDeleteEvent={handleDeleteEvent}
+        isImportant={isImportant} // 여기 추가
+        setIsImportant={setIsImportant} // 여기 추가
       />
     </Router>
   );
@@ -194,10 +202,12 @@ const AppContent = ({
   setIsMultiDay,
   themeModalAnchor,
   selectedEvent,
-  setSelectedEvent, // 여기 추가
+  setSelectedEvent,
   handleEventSelect,
   handleUpdateEvent,
   handleDeleteEvent,
+  isImportant,
+  setIsImportant,
 }) => {
   const location = useLocation();
 
@@ -263,6 +273,8 @@ const AppContent = ({
                     setIsMultiDay={setIsMultiDay}
                     themeColor={themeColor}
                     handleEventSelect={handleEventSelect}
+                    isImportant={isImportant} // 여기 추가
+                    setIsImportant={setIsImportant} // 여기 추가
                   />
                 }
               />
@@ -365,18 +377,23 @@ const AddEventModal = ({
   setIsMultiDay,
   handleSaveEvent,
   projectId,
+  isImportant,
+  setIsImportant,
 }) => {
   return (
     showAddEventModal && (
       <Modal
         isOpen={showAddEventModal}
-        onClose={() => setShowAddEventModal(false)}
+        onClose={() => {
+          setShowAddEventModal(false);
+          setIsImportant(false); // 모달 닫을 때 important 상태 초기화
+        }}
       >
         <div className="event-type-selector">
           <button
-            className="important-btn"
+            className={`important-btn ${isImportant ? "active" : ""}`} // 여기 수정
             type="button"
-            // onClick={onImportantSet}
+            onClick={() => setIsImportant(!isImportant)} // 여기 수정
           >
             🚨
           </button>
@@ -399,7 +416,6 @@ const AddEventModal = ({
           isMultiDay={isMultiDay}
           onSave={event => handleSaveEvent(event, projectId)}
           onCancel={() => setShowAddEventModal(false)}
-          // onImportantSet={onImportantSet}
         />
       </Modal>
     )
