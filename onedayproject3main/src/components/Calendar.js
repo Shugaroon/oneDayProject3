@@ -29,7 +29,7 @@ const MyCalendar = ({
       : {
           backgroundColor: event.color,
           borderRadius: "4px",
-          opacity: 0.8,
+          opacity: 1,
           color: "white",
           border: "0px",
           display: "block",

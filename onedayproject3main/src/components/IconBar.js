@@ -33,7 +33,7 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
         📅
       </Link>
       <span className={`icon-modal ${modal2Open ? "show" : "hide"}`}>
-        CALENDER
+        CALENDAR
       </span>
       <Link
         to="/out"
