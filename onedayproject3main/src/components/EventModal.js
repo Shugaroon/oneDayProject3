@@ -33,38 +33,50 @@ const EventModal = ({ isOpen, onClose, event, onSave, onDelete }) => {
     isOpen && (
       <div className="event-modal-overlay">
         <div className="event-modal">
-          <h2>Edit Event</h2>
-          <label>
-            Title:
+          <div className="modal-header-wrapper">
+            <h3>Edit Event✏️</h3>
+            <button
+              className="modal-buttons"
+              onClick={() => onDelete(event.id)}
+            >
+              Delete
+            </button>
+          </div>
+          <div className="edit-wrapper">
             <input
+              placeholder="Enter Topic"
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
             />
-          </label>
-          <label>
-            Start:
-            <input
-              type="datetime-local"
-              value={formatDate(start)}
-              onChange={e => setStart(new Date(e.target.value))}
+            <div className="event-modal-date-wrapper">
+              <div className="date-start-wrapper">
+                <div className="date-letter">Start</div>
+                <input
+                  type="datetime-local"
+                  value={formatDate(start)}
+                  onChange={e => setStart(new Date(e.target.value))}
+                />
+              </div>
+              <div className="date-end-wrapper">
+                <div className="date-letter">End</div>
+                <input
+                  type="datetime-local"
+                  value={formatDate(end)}
+                  onChange={e => setEnd(new Date(e.target.value))}
+                />
+              </div>
+            </div>
+
+            <textarea
+              value={memo}
+              onChange={e => setMemo(e.target.value)}
+              placeholder="add Memo"
             />
-          </label>
-          <label>
-            End:
-            <input
-              type="datetime-local"
-              value={formatDate(end)}
-              onChange={e => setEnd(new Date(e.target.value))}
-            />
-          </label>
-          <label>
-            Memo:
-            <textarea value={memo} onChange={e => setMemo(e.target.value)} />
-          </label>
+          </div>
+
           <div className="modal-buttons">
             <button onClick={handleSave}>Save</button>
-            <button onClick={() => onDelete(event.id)}>Delete</button>
             <button onClick={onClose}>Close</button>
           </div>
         </div>

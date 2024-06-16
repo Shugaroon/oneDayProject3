@@ -129,6 +129,11 @@
   font-weight: 400;
 }
 
+.rbc-now button::before {
+  content: "📌";
+  font-size: 13px;
+}
+
 .rbc-off-range-bg {
   background-color: #fafafa;
 }

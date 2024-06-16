@@ -202,10 +202,11 @@
 }
 
 .form-actions button:last-of-type {
-  background-color: #c5c5c5;
-  color: white;
+  background-color: #ececec;
+  color: rgb(58, 58, 58);
 }
 
 .form-actions button:last-of-type:hover {
   background-color: #e74c3c;
+  color: white;
 }

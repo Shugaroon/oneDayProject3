@@ -12,68 +12,86 @@
 }
 
 .event-modal {
-  padding: 20px;
-  border-radius: 10px;
-  background-color: white;
+  background: white;
+  padding: 30px 30px 40px 30px;
+  border-radius: 20px;
+  height: 355px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  max-width: 100%;
+  position: relative;
+  max-width: 45%;
 }
 
-.event-modal h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
+.modal-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.event-modal h3 {
+  margin: 0;
+  /* font-size: 24px; */
   color: #333;
 }
 
-.event-modal label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #555;
+.event-modal-date-wrapper {
+  display: flex;
+  margin: 0;
+  width: 10%;
+}
+.date-start-wrapper,
+.date-end-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .event-modal input[type="text"],
 .event-modal input[type="datetime-local"],
 .event-modal textarea {
-  width: 80%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  padding: 13px 10px;
+  margin: 5px 0 15px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 13px;
   font-size: 16px;
 }
-
+.event-modal input[type="text"] {
+  width: 93%;
+}
+.event-modal input[type="datetime-local"] {
+  width: 55%;
+}
 .event-modal textarea {
+  width: 93%;
   height: 100px;
   resize: vertical;
 }
 
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .modal-buttons button {
-  padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: transparent;
   cursor: pointer;
+  width: 100%;
+  height: 43px;
+  transition: 0.2s;
 }
 
 .modal-buttons button:first-child {
   background-color: #4caf50;
   color: white;
+  margin-bottom: 5px;
 }
 
-.modal-buttons button:nth-child(2) {
-  background-color: #f44336;
-  color: white;
+.modal-buttons button:last-of-type {
+  background-color: #ececec;
+  color: rgb(58, 58, 58);
 }
 
-.modal-buttons button:last-child {
-  background-color: #555;
+.modal-buttons button:last-of-type:hover {
+  background-color: #e74c3c;
   color: white;
 }
