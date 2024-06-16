@@ -16,7 +16,7 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
         &#9776;
       </button>
       <Link
-        to="#"
+        to="/"
         className="icon icon1"
         onMouseOver={() => setModal1Open(true)}
         onMouseOut={() => setModal1Open(false)}
@@ -25,7 +25,7 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
       </Link>
       <span className={`icon-modal ${modal1Open ? "show" : "hide"}`}>HOME</span>
       <Link
-        to="#"
+        to="/out"
         className="icon icon2"
         onMouseOver={() => setModal2Open(true)}
         onMouseOut={() => setModal2Open(false)}
@@ -36,7 +36,7 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
         CALENDER
       </span>
       <Link
-        to="#"
+        to="/out"
         className="icon icon3"
         onMouseOver={() => setModal3Open(true)}
         onMouseOut={() => setModal3Open(false)}
@@ -45,7 +45,7 @@ const IconBar = ({ toggleSidebar, openThemeModal }) => {
       </Link>
       <span className={`icon-modal ${modal3Open ? "show" : "hide"}`}>CHAT</span>
       <Link
-        to="#"
+        to="/out"
         className="icon icon4"
         onMouseOver={() => setModal4Open(true)}
         onMouseOut={() => setModal4Open(false)}

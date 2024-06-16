@@ -17,16 +17,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="menu-container">
           <div className="menu-item">Tasks</div>
           <div className="submenu">
-            <Link to="#" className="submenu-item upcoming">
+            <Link to="/out" className="submenu-item upcoming">
               📅 Upcoming <span className="badge">5</span>
             </Link>
-            <Link to="#" className="submenu-item important">
+            <Link to="/out" className="submenu-item important">
               🚨 Important
             </Link>
-            <Link to="#" className="submenu-item notification">
+            <Link to="/out" className="submenu-item notification">
               🔔 Notification
             </Link>
-            <Link to="#" className="submenu-item event">
+            <Link to="/out" className="submenu-item event">
               🎉 Event
             </Link>
           </div>
@@ -34,23 +34,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="menu-container">
           <div className="menu-item">Community</div>
           <div className="submenu">
-            <Link to="#" className="submenu-item chat">
+            <Link to="/out" className="submenu-item chat">
               💬 Chat
             </Link>
-            <Link to="#" className="submenu-item member">
+            <Link to="/out" className="submenu-item member">
               👥 Members
             </Link>
           </div>
         </div>
 
         <div className="menu-container">
-          <Link to="#" className="menu-item theme">
+          <Link to="/out" className="menu-item theme">
             🎨 Theme
           </Link>
-          <Link to="#" className="menu-item setting">
+          <Link to="/out" className="menu-item setting">
             ⚙️ Settings
           </Link>
-          <Link to="#" className="menu-item logout">
+          <Link to="/login" className="menu-item logout">
             🚪 Log out
           </Link>
         </div>
