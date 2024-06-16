@@ -172,3 +172,19 @@ html {
 * {
   font-family: "Pretendard-Regular";
 }
+.important-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.important-btn:hover {
+  transform: scale(1.1);
+}
+
+.important-btn.active {
+  background-color: #ffbaba;
+  box-shadow: none;
+}
