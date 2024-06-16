@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useParams,
-  useLocation,
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useParams,
+    useLocation,
 } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import MyCalendar from "./components/Calendar";
@@ -18,392 +18,416 @@ import ProjectForm from "./components/ProjectForm";
 import ThemeModal from "./components/ThemeModal";
 import EventModal from "./components/EventModal"; // EventModal 추가
 import "./App.css";
+import LoginPage from "./components/LoginPage";
+import SignUpPage from "./components/SignUpPage";
+import OutOfService from "./components/OutOfService";
 
 const App = () => {
-  const themes = {
-    Default: "#003cff",
-    Dark: "#333",
-    Green: "#4CAF50",
-  };
+    const themes = {
+        Default: "#003cff",
+        Dark: "#333",
+        Green: "#4CAF50",
+    };
 
-  const savedThemeColor = localStorage.getItem("themeColor") || themes.Default;
+    const savedThemeColor =
+        localStorage.getItem("themeColor") || themes.Default;
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [date, setDate] = useState(new Date());
-  const [view, setView] = useState("month");
-  const [events, setEvents] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [showAddEventModal, setShowAddEventModal] = useState(false);
-  const [showAddProjectModal, setShowAddProjectModal] = useState(false);
-  const [showThemeModal, setShowThemeModal] = useState(false);
-  const [themeColor, setThemeColor] = useState(savedThemeColor);
-  const [isMultiDay, setIsMultiDay] = useState(false);
-  const [themeModalAnchor, setThemeModalAnchor] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null); // 여기 추가
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [date, setDate] = useState(new Date());
+    const [view, setView] = useState("month");
+    const [events, setEvents] = useState([]);
+    const [projects, setProjects] = useState([]);
+    const [showAddEventModal, setShowAddEventModal] = useState(false);
+    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+    const [showThemeModal, setShowThemeModal] = useState(false);
+    const [themeColor, setThemeColor] = useState(savedThemeColor);
+    const [isMultiDay, setIsMultiDay] = useState(false);
+    const [themeModalAnchor, setThemeModalAnchor] = useState(null);
+    const [selectedEvent, setSelectedEvent] = useState(null); // 여기 추가
 
-  const updateElementStyles = useCallback(() => {
-    const elements = document.querySelectorAll(
-      ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
+    const updateElementStyles = useCallback(() => {
+        const elements = document.querySelectorAll(
+            ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
+        );
+        elements.forEach(element => {
+            if (element.classList.contains("dropdown")) {
+                element.style.borderBottomColor = themeColor;
+            } else if (element.classList.contains("active")) {
+                element.style.backgroundColor = themeColor;
+                element.style.color = "white";
+            } else if (element.classList.contains("view-mode-button")) {
+                element.style.backgroundColor = "white";
+                element.style.color = "black";
+            } else {
+                element.style.backgroundColor = themeColor;
+            }
+        });
+    }, [themeColor]);
+
+    useEffect(() => {
+        document.body.style.backgroundColor = themeColor;
+        updateElementStyles();
+    }, [themeColor, updateElementStyles]);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(prev => !prev);
+    };
+
+    const handleNavigate = newDate => {
+        setDate(newDate);
+    };
+
+    const handleViewChange = newView => {
+        setView(newView);
+        setTimeout(() => {
+            updateElementStyles();
+        }, 0);
+    };
+
+    const handleAddEvent = () => {
+        setShowAddEventModal(true);
+    };
+
+    const handleSaveEvent = (event, projectId) => {
+        const newEvent = { ...event, projectId, id: uuidv4() }; // 고유 ID 추가
+        setEvents([...events, newEvent]);
+        setShowAddEventModal(false);
+    };
+
+    const handleUpdateEvent = updatedEvent => {
+        setEvents(
+            events.map(event =>
+                event.id === updatedEvent.id ? updatedEvent : event
+            )
+        );
+    };
+
+    const handleDeleteEvent = eventId => {
+        setEvents(events.filter(event => event.id !== eventId));
+        setSelectedEvent(null);
+    };
+
+    const handleEventSelect = event => {
+        setSelectedEvent(event);
+    };
+
+    const handleAddProject = () => {
+        setShowAddProjectModal(true);
+    };
+
+    const handleSaveProject = project => {
+        const newProject = { ...project, id: uuidv4(), events: [] };
+        setProjects([...projects, newProject]);
+        setShowAddProjectModal(false);
+    };
+
+    const openThemeModal = themeIconRef => {
+        setThemeModalAnchor(themeIconRef);
+        setShowThemeModal(true);
+    };
+
+    const closeThemeModal = () => {
+        setShowThemeModal(false);
+    };
+
+    const selectTheme = color => {
+        setThemeColor(color);
+        localStorage.setItem("themeColor", color); // 로컬 스토리지에 저장
+        closeThemeModal();
+    };
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/outofservice" element={<OutOfService />} />
+                <Route
+                    path="*"
+                    element={
+                        <AppContent
+                            sidebarOpen={sidebarOpen}
+                            toggleSidebar={toggleSidebar}
+                            themeColor={themeColor}
+                            date={date}
+                            view={view}
+                            handleNavigate={handleNavigate}
+                            handleViewChange={handleViewChange}
+                            handleAddEvent={handleAddEvent}
+                            events={events}
+                            projects={projects}
+                            handleAddProject={handleAddProject}
+                            showAddEventModal={showAddEventModal}
+                            setShowAddEventModal={setShowAddEventModal}
+                            showAddProjectModal={showAddProjectModal}
+                            setShowAddProjectModal={setShowAddProjectModal}
+                            showThemeModal={showThemeModal}
+                            openThemeModal={openThemeModal}
+                            closeThemeModal={closeThemeModal}
+                            selectTheme={selectTheme}
+                            handleSaveEvent={handleSaveEvent}
+                            handleSaveProject={handleSaveProject}
+                            isMultiDay={isMultiDay}
+                            setIsMultiDay={setIsMultiDay}
+                            themeModalAnchor={themeModalAnchor}
+                            selectedEvent={selectedEvent} // 여기 추가
+                            setSelectedEvent={setSelectedEvent} // 여기 추가
+                            handleEventSelect={handleEventSelect}
+                            handleUpdateEvent={handleUpdateEvent}
+                            handleDeleteEvent={handleDeleteEvent}
+                        />
+                    }
+                />
+            </Routes>
+        </Router>
     );
-    elements.forEach(element => {
-      if (element.classList.contains("dropdown")) {
-        element.style.borderBottomColor = themeColor;
-      } else if (element.classList.contains("active")) {
-        element.style.backgroundColor = themeColor;
-        element.style.color = "white";
-      } else if (element.classList.contains("view-mode-button")) {
-        element.style.backgroundColor = "white";
-        element.style.color = "black";
-      } else {
-        element.style.backgroundColor = themeColor;
-      }
-    });
-  }, [themeColor]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = themeColor;
-    updateElementStyles();
-  }, [themeColor, updateElementStyles]);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(prev => !prev);
-  };
-
-  const handleNavigate = newDate => {
-    setDate(newDate);
-  };
-
-  const handleViewChange = newView => {
-    setView(newView);
-    setTimeout(() => {
-      updateElementStyles();
-    }, 0);
-  };
-
-  const handleAddEvent = () => {
-    setShowAddEventModal(true);
-  };
-
-  const handleSaveEvent = (event, projectId) => {
-    const newEvent = { ...event, projectId, id: uuidv4() }; // 고유 ID 추가
-    setEvents([...events, newEvent]);
-    setShowAddEventModal(false);
-  };
-
-  const handleUpdateEvent = updatedEvent => {
-    setEvents(
-      events.map(event => (event.id === updatedEvent.id ? updatedEvent : event))
-    );
-  };
-
-  const handleDeleteEvent = eventId => {
-    setEvents(events.filter(event => event.id !== eventId));
-    setSelectedEvent(null);
-  };
-
-  const handleEventSelect = event => {
-    setSelectedEvent(event);
-  };
-
-  const handleAddProject = () => {
-    setShowAddProjectModal(true);
-  };
-
-  const handleSaveProject = project => {
-    const newProject = { ...project, id: uuidv4(), events: [] };
-    setProjects([...projects, newProject]);
-    setShowAddProjectModal(false);
-  };
-  // const onImportantSet = () => {};
-
-  const openThemeModal = themeIconRef => {
-    setThemeModalAnchor(themeIconRef);
-    setShowThemeModal(true);
-  };
-
-  const closeThemeModal = () => {
-    setShowThemeModal(false);
-  };
-
-  const selectTheme = color => {
-    setThemeColor(color);
-    localStorage.setItem("themeColor", color); // 로컬 스토리지에 저장
-    closeThemeModal();
-  };
-
-  return (
-    <Router>
-      <AppContent
-        sidebarOpen={sidebarOpen}
-        toggleSidebar={toggleSidebar}
-        themeColor={themeColor}
-        date={date}
-        view={view}
-        handleNavigate={handleNavigate}
-        handleViewChange={handleViewChange}
-        handleAddEvent={handleAddEvent}
-        events={events}
-        projects={projects}
-        handleAddProject={handleAddProject}
-        showAddEventModal={showAddEventModal}
-        setShowAddEventModal={setShowAddEventModal}
-        showAddProjectModal={showAddProjectModal}
-        setShowAddProjectModal={setShowAddProjectModal}
-        showThemeModal={showThemeModal}
-        openThemeModal={openThemeModal}
-        closeThemeModal={closeThemeModal}
-        selectTheme={selectTheme}
-        handleSaveEvent={handleSaveEvent}
-        handleSaveProject={handleSaveProject}
-        isMultiDay={isMultiDay}
-        setIsMultiDay={setIsMultiDay}
-        themeModalAnchor={themeModalAnchor}
-        selectedEvent={selectedEvent} // 여기 추가
-        setSelectedEvent={setSelectedEvent} // 여기 추가
-        handleEventSelect={handleEventSelect}
-        handleUpdateEvent={handleUpdateEvent}
-        handleDeleteEvent={handleDeleteEvent}
-      />
-    </Router>
-  );
 };
 
 const AppContent = ({
-  sidebarOpen,
-  toggleSidebar,
-  themeColor,
-  date,
-  view,
-  handleNavigate,
-  handleViewChange,
-  handleAddEvent,
-  events,
-  projects,
-  handleAddProject,
-  showAddEventModal,
-  setShowAddEventModal,
-  showAddProjectModal,
-  setShowAddProjectModal,
-  showThemeModal,
-  openThemeModal,
-  closeThemeModal,
-  selectTheme,
-  handleSaveEvent,
-  handleSaveProject,
-  isMultiDay,
-  setIsMultiDay,
-  themeModalAnchor,
-  selectedEvent,
-  setSelectedEvent, // 여기 추가
-  handleEventSelect,
-  handleUpdateEvent,
-  handleDeleteEvent,
+    sidebarOpen,
+    toggleSidebar,
+    themeColor,
+    date,
+    view,
+    handleNavigate,
+    handleViewChange,
+    handleAddEvent,
+    events,
+    projects,
+    handleAddProject,
+    showAddEventModal,
+    setShowAddEventModal,
+    showAddProjectModal,
+    setShowAddProjectModal,
+    showThemeModal,
+    openThemeModal,
+    closeThemeModal,
+    selectTheme,
+    handleSaveEvent,
+    handleSaveProject,
+    isMultiDay,
+    setIsMultiDay,
+    themeModalAnchor,
+    selectedEvent,
+    setSelectedEvent, // 여기 추가
+    handleEventSelect,
+    handleUpdateEvent,
+    handleDeleteEvent,
 }) => {
-  const location = useLocation();
+    const location = useLocation();
 
-  useEffect(() => {
-    const updateElementStyles = () => {
-      const elements = document.querySelectorAll(
-        ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
-      );
-      elements.forEach(element => {
-        if (element.classList.contains("dropdown")) {
-          element.style.borderBottomColor = themeColor;
-        } else if (element.classList.contains("active")) {
-          element.style.backgroundColor = themeColor;
-          element.style.color = "white";
-        } else if (element.classList.contains("view-mode-button")) {
-          element.style.backgroundColor = "white";
-          element.style.color = "black";
-        } else {
-          element.style.backgroundColor = themeColor;
-        }
-      });
-    };
+    useEffect(() => {
+        const updateElementStyles = () => {
+            const elements = document.querySelectorAll(
+                ".add-event-button, .view-mode-buttons button, .more-profiles, .badge, .dropdown"
+            );
+            elements.forEach(element => {
+                if (element.classList.contains("dropdown")) {
+                    element.style.borderBottomColor = themeColor;
+                } else if (element.classList.contains("active")) {
+                    element.style.backgroundColor = themeColor;
+                    element.style.color = "white";
+                } else if (element.classList.contains("view-mode-button")) {
+                    element.style.backgroundColor = "white";
+                    element.style.color = "black";
+                } else {
+                    element.style.backgroundColor = themeColor;
+                }
+            });
+        };
 
-    updateElementStyles();
-  }, [themeColor, location]);
+        updateElementStyles();
+    }, [themeColor, location]);
 
-  return (
-    <div className="App" style={{ backgroundColor: themeColor }}>
-      <div className={`container ${sidebarOpen ? "sidebar-open" : ""}`}>
-        <div className="inner-container">
-          <Header />
-          <div className="main-content">
-            <div
-              className={`sidebar-container ${sidebarOpen ? "open" : "hidden"}`}
-            >
-              <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+    return (
+        <div className="App" style={{ backgroundColor: themeColor }}>
+            <div className={`container ${sidebarOpen ? "sidebar-open" : ""}`}>
+                <div className="inner-container">
+                    <Header />
+                    <div className="main-content">
+                        <div
+                            className={`sidebar-container ${
+                                sidebarOpen ? "open" : "hidden"
+                            }`}
+                        >
+                            <Sidebar
+                                isOpen={sidebarOpen}
+                                toggleSidebar={toggleSidebar}
+                            />
+                        </div>
+                        <div
+                            className={`icon-bar-container ${
+                                sidebarOpen ? "hidden" : "open"
+                            }`}
+                        >
+                            <IconBar
+                                toggleSidebar={toggleSidebar}
+                                openThemeModal={openThemeModal}
+                            />
+                        </div>
+                        <Routes>
+                            <Route
+                                path="/calendar/:projectId"
+                                element={
+                                    <ProjectCalendarWrapper
+                                        date={date}
+                                        view={view}
+                                        onNavigate={handleNavigate}
+                                        onView={handleViewChange}
+                                        onAddEvent={handleAddEvent}
+                                        events={events}
+                                        handleSaveEvent={handleSaveEvent}
+                                        showAddEventModal={showAddEventModal}
+                                        setShowAddEventModal={
+                                            setShowAddEventModal
+                                        }
+                                        isMultiDay={isMultiDay}
+                                        setIsMultiDay={setIsMultiDay}
+                                        themeColor={themeColor}
+                                        handleEventSelect={handleEventSelect}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/calendar"
+                                element={
+                                    <div
+                                        className={`content-wrapper calendar-content-wrapper ${
+                                            sidebarOpen ? "sidebar-open" : ""
+                                        }`}
+                                    >
+                                        <MyCalendar
+                                            date={date}
+                                            view={view}
+                                            onNavigate={handleNavigate}
+                                            onView={handleViewChange}
+                                            onAddEvent={handleAddEvent}
+                                            events={events}
+                                            handleEventSelect={
+                                                handleEventSelect
+                                            }
+                                        />
+                                    </div>
+                                }
+                            />
+                            <Route
+                                path="/"
+                                element={
+                                    <div
+                                        className={`content-wrapper project-content-wrapper ${
+                                            sidebarOpen ? "sidebar-open" : ""
+                                        }`}
+                                    >
+                                        <ProjectSelection
+                                            projects={projects}
+                                            onAddProject={handleAddProject}
+                                        />
+                                    </div>
+                                }
+                            />
+                        </Routes>
+                    </div>
+                </div>
+                {showAddProjectModal && (
+                    <Modal
+                        isOpen={showAddProjectModal}
+                        onClose={() => setShowAddProjectModal(false)}
+                    >
+                        <ProjectForm
+                            onSave={handleSaveProject}
+                            onCancel={() => setShowAddProjectModal(false)}
+                        />
+                    </Modal>
+                )}
             </div>
-            <div
-              className={`icon-bar-container ${
-                sidebarOpen ? "hidden" : "open"
-              }`}
-            >
-              <IconBar
-                toggleSidebar={toggleSidebar}
-                openThemeModal={openThemeModal}
-              />
-            </div>
-            <Routes>
-              <Route
-                path="/calendar/:projectId"
-                element={
-                  <ProjectCalendarWrapper
-                    date={date}
-                    view={view}
-                    onNavigate={handleNavigate}
-                    onView={handleViewChange}
-                    onAddEvent={handleAddEvent}
-                    events={events}
-                    handleSaveEvent={handleSaveEvent}
-                    showAddEventModal={showAddEventModal}
-                    setShowAddEventModal={setShowAddEventModal}
-                    isMultiDay={isMultiDay}
-                    setIsMultiDay={setIsMultiDay}
-                    themeColor={themeColor}
-                    handleEventSelect={handleEventSelect}
-                  />
-                }
-              />
-              <Route
-                path="/calendar"
-                element={
-                  <div
-                    className={`content-wrapper calendar-content-wrapper ${
-                      sidebarOpen ? "sidebar-open" : ""
-                    }`}
-                  >
-                    <MyCalendar
-                      date={date}
-                      view={view}
-                      onNavigate={handleNavigate}
-                      onView={handleViewChange}
-                      onAddEvent={handleAddEvent}
-                      events={events}
-                      handleEventSelect={handleEventSelect}
+            {showAddProjectModal && (
+                <Modal
+                    isOpen={showAddProjectModal}
+                    onClose={() => setShowAddProjectModal(false)}
+                >
+                    <ProjectForm
+                        onSave={handleSaveProject}
+                        onCancel={() => setShowAddProjectModal(false)}
                     />
-                  </div>
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  <div
-                    className={`content-wrapper project-content-wrapper ${
-                      sidebarOpen ? "sidebar-open" : ""
-                    }`}
-                  >
-                    <ProjectSelection
-                      projects={projects}
-                      onAddProject={handleAddProject}
-                    />
-                  </div>
-                }
-              />
-            </Routes>
-          </div>
+                </Modal>
+            )}
+            {showThemeModal && (
+                <ThemeModal
+                    isOpen={showThemeModal}
+                    onClose={closeThemeModal}
+                    selectTheme={selectTheme}
+                    anchorRef={themeModalAnchor}
+                />
+            )}
+            {selectedEvent && (
+                <EventModal
+                    isOpen={!!selectedEvent}
+                    onClose={() => setSelectedEvent(null)}
+                    event={selectedEvent}
+                    onSave={handleUpdateEvent}
+                    onDelete={handleDeleteEvent}
+                />
+            )}
         </div>
-        {showAddProjectModal && (
-          <Modal
-            isOpen={showAddProjectModal}
-            onClose={() => setShowAddProjectModal(false)}
-          >
-            <ProjectForm
-              onSave={handleSaveProject}
-              onCancel={() => setShowAddProjectModal(false)}
-            />
-          </Modal>
-        )}
-      </div>
-      {showAddProjectModal && (
-        <Modal
-          isOpen={showAddProjectModal}
-          onClose={() => setShowAddProjectModal(false)}
-        >
-          <ProjectForm
-            onSave={handleSaveProject}
-            onCancel={() => setShowAddProjectModal(false)}
-          />
-        </Modal>
-      )}
-      {showThemeModal && (
-        <ThemeModal
-          isOpen={showThemeModal}
-          onClose={closeThemeModal}
-          selectTheme={selectTheme}
-          anchorRef={themeModalAnchor}
-        />
-      )}
-      {selectedEvent && (
-        <EventModal
-          isOpen={!!selectedEvent}
-          onClose={() => setSelectedEvent(null)}
-          event={selectedEvent}
-          onSave={handleUpdateEvent}
-          onDelete={handleDeleteEvent}
-        />
-      )}
-    </div>
-  );
+    );
 };
 
 const ProjectCalendarWrapper = props => {
-  const { projectId } = useParams();
-  return (
-    <div className="content-wrapper calendar-content-wrapper">
-      <MyCalendar {...props} projectId={projectId} />
-      <AddEventModal {...props} projectId={projectId} />
-    </div>
-  );
+    const { projectId } = useParams();
+    return (
+        <div className="content-wrapper calendar-content-wrapper">
+            <MyCalendar {...props} projectId={projectId} />
+            <AddEventModal {...props} projectId={projectId} />
+        </div>
+    );
 };
 
 const AddEventModal = ({
-  showAddEventModal,
-  setShowAddEventModal,
-  isMultiDay,
-  setIsMultiDay,
-  handleSaveEvent,
-  projectId,
+    showAddEventModal,
+    setShowAddEventModal,
+    isMultiDay,
+    setIsMultiDay,
+    handleSaveEvent,
+    projectId,
 }) => {
-  return (
-    showAddEventModal && (
-      <Modal
-        isOpen={showAddEventModal}
-        onClose={() => setShowAddEventModal(false)}
-      >
-        <div className="event-type-selector">
-          <button
-            className="important-btn"
-            type="button"
-            // onClick={onImportantSet}
-          >
-            🚨
-          </button>
-          <div className="event-type-btn-wrapper">
-            <button
-              className={!isMultiDay ? "active" : ""}
-              onClick={() => setIsMultiDay(false)}
+    return (
+        showAddEventModal && (
+            <Modal
+                isOpen={showAddEventModal}
+                onClose={() => setShowAddEventModal(false)}
             >
-              Single Day
-            </button>
-            <button
-              className={isMultiDay ? "active" : ""}
-              onClick={() => setIsMultiDay(true)}
-            >
-              Multi Day
-            </button>
-          </div>
-        </div>
-        <EventForm
-          isMultiDay={isMultiDay}
-          onSave={event => handleSaveEvent(event, projectId)}
-          onCancel={() => setShowAddEventModal(false)}
-          // onImportantSet={onImportantSet}
-        />
-      </Modal>
-    )
-  );
+                <div className="event-type-selector">
+                    <button
+                        className="important-btn"
+                        type="button"
+                        onClick={() => {}}
+                    >
+                        🚨
+                    </button>
+                    <div className="event-type-btn-wrapper">
+                        <button
+                            className={!isMultiDay ? "active" : ""}
+                            onClick={() => setIsMultiDay(false)}
+                        >
+                            Single Day
+                        </button>
+                        <button
+                            className={isMultiDay ? "active" : ""}
+                            onClick={() => setIsMultiDay(true)}
+                        >
+                            Multi Day
+                        </button>
+                    </div>
+                </div>
+                <EventForm
+                    isMultiDay={isMultiDay}
+                    onSave={event => handleSaveEvent(event, projectId)}
+                    onCancel={() => setShowAddEventModal(false)}
+                    // onImportantSet={onImportantSet}
+                />
+            </Modal>
+        )
+    );
 };
 
 export default App;

@@ -1,30 +1,30 @@
-.login-form {
+.LoginPage-login-form {
     display: flex;
     flex-direction: column;
     width: 250px;
     padding: 80px;
 }
 
-.logo-wrapper {
+.LoginPage-logo-wrapper {
     margin-bottom: 30px;
 }
 
-.logo {
+.LoginPage-logo {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
 }
 
-.input {
+.LoginPage-input {
     margin: 10px 0;
     outline: none;
 }
 
-::placeholder {
+.LoginPage-login-form ::placeholder {
     font-size: 12px;
 }
 
-.login-box-item {
+.LoginPage-login-box-item {
     padding: 10px;
     border: 3px solid rgb(220, 220, 220);
     border-radius: 10px;
@@ -32,26 +32,28 @@
     margin-bottom: 10px;
 }
 
-.sign-up-word {
+.LoginPage-sign-up-word {
     text-align: center;
     font-size: 13px;
     margin: 10px;
     margin-top: 20px;
 }
 
-.email-login-button {
+.LoginPage-email-login-button {
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    height: 43px;
+    transition: 0.2s;
     background-color: #003cff;
     color: white;
-    font-weight: bold;
-    font-size: 15px;
-    padding: 12px;
-    letter-spacing: 1px;
-    border-radius: 10px;
-    border: none;
-    margin-top: 20px;
+}
+.LoginPage-email-login-button:hover {
+    transform: scale(1.02);
 }
 
-.loginBtn-wrapper {
+.LoginPage-loginBtn-wrapper {
     display: flex;
     flex-direction: column;
     margin-top: 10px;

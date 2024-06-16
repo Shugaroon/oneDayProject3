@@ -3,7 +3,7 @@ a {
     color: black;
 }
 
-.container {
+.LoginPage-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@ a {
     height: 100vh;
 }
 
-.white-container {
+.LoginPage-white-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@ a {
     border-radius: 50px;
 }
 
-.login-container {
+.LoginPage-login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
