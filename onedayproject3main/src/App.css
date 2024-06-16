@@ -142,12 +142,13 @@ html {
   /* multi day 버튼 */
   border-radius: 0px 7px 7px 0px;
 }
-.event-type-btn-wrapper button:hover {
-  background-color: rgb(180, 180, 180);
-}
-.event-type-btn-wrapper button:focus {
+
+.event-type-btn-wrapper button.active {
   background-color: #003cff;
   color: white;
+}
+.event-type-btn-wrapper button:hover {
+  background-color: rgb(180, 180, 180);
 }
 
 /* important 버튼---------------------------------- */
