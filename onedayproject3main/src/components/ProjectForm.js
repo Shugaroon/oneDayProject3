@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/ProjectForm.css";
 import sunflowerImage from "./img/sunflower.png";
 
-const ProjectForm = ({ onSave, onCancel }) => {
+const ProjectForm = ({ onSave, onCancel, themeColor }) => {
   const [projectName, setProjectName] = useState("");
   const [isSpecialProject, setIsSpecialProject] = useState(false);
   const [isLoremChecked, setIsLoremChecked] = useState(false);
@@ -55,7 +55,13 @@ const ProjectForm = ({ onSave, onCancel }) => {
                   Terms of Service
                 </label>
               </div>
-              <button type="submit">Create</button>
+              <button
+                type="submit"
+                className="test"
+                style={{ backgroundColor: themeColor }}
+              >
+                Create
+              </button>
               <button type="button" onClick={onCancel}>
                 Close
               </button>

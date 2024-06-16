@@ -343,6 +343,7 @@ const AppContent = ({
             <ProjectForm
               onSave={handleSaveProject}
               onCancel={() => setShowAddProjectModal(false)}
+              themeColor={themeColor}
             />
           </Modal>
         )}
@@ -355,6 +356,7 @@ const AppContent = ({
           <ProjectForm
             onSave={handleSaveProject}
             onCancel={() => setShowAddProjectModal(false)}
+            themeColor={themeColor}
           />
         </Modal>
       )}
@@ -398,6 +400,7 @@ const AddEventModal = ({
   projectId,
   isImportant,
   setIsImportant,
+  themeColor,
 }) => {
   return (
     showAddEventModal && (
@@ -419,12 +422,22 @@ const AddEventModal = ({
           <div className="event-type-btn-wrapper">
             <button
               className={!isMultiDay ? "active" : ""}
+              style={
+                !isMultiDay
+                  ? { backgroundColor: themeColor }
+                  : { backgroundColor: "white" }
+              }
               onClick={() => setIsMultiDay(false)}
             >
               Single Day
             </button>
             <button
               className={isMultiDay ? "active" : ""}
+              style={
+                isMultiDay
+                  ? { backgroundColor: themeColor }
+                  : { backgroundColor: "white" }
+              }
               onClick={() => setIsMultiDay(true)}
             >
               Multi Day
@@ -435,6 +448,7 @@ const AddEventModal = ({
           isMultiDay={isMultiDay}
           onSave={event => handleSaveEvent(event, projectId)}
           onCancel={() => setShowAddEventModal(false)}
+          themeColor={themeColor}
         />
       </Modal>
     )
