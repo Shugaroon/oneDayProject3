@@ -33,9 +33,9 @@ export default function SignUpForm() {
 
       <span className="SignUpForm-checkbox-span">
         <input type="checkbox" id="checkbox" />I agree to the
-        <a href="#">Terms of Service</a>
+        <a href="/out">Terms of Service</a>
         <span>and</span>
-        <a href="#">Privacy Policy</a>
+        <a href="/out">Privacy Policy</a>
       </span>
       <button className="SignUpForm-create-account-button ">
         Create an account
