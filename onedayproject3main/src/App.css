@@ -190,3 +190,6 @@ html {
   background-color: #ffbaba;
   box-shadow: none;
 }
+a {
+  text-decoration: none;
+}

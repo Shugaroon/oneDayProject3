@@ -1,6 +1,6 @@
 import "../css/SignUpForm.css";
 
-export default function SignUpForm() {
+export default function SignUpForm({ themeColor }) {
   return (
     <form className="SignUpForm-signUp-form">
       <div className="SignUpForm-sign-up-wrapper">
@@ -33,16 +33,27 @@ export default function SignUpForm() {
 
       <span className="SignUpForm-checkbox-span">
         <input type="checkbox" id="checkbox" />I agree to the
-        <a href="/out">Terms of Service</a>
+        <a href="/out" style={{ color: themeColor }}>
+          Terms of Service
+        </a>
         <span>and</span>
-        <a href="/out">Privacy Policy</a>
+        <a href="/out" style={{ color: themeColor }}>
+          Privacy Policy
+        </a>
       </span>
-      <button className="SignUpForm-create-account-button ">
+      <button
+        className="SignUpForm-create-account-button "
+        style={{ backgroundColor: themeColor }}
+      >
         Create an account
       </button>
       <div>
         <span className="SignUpForm-word-item">Already a member?</span>
-        <a href="/login" className="SignUpForm-word-item">
+        <a
+          href="/login"
+          className="SignUpForm-word-item"
+          style={{ color: themeColor }}
+        >
           Log in
         </a>
       </div>

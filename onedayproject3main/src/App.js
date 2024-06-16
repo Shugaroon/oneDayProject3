@@ -143,9 +143,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage themeColor={themeColor} />} />
         {/* LoginPage 경로 추가 */}
-        <Route path="/signup" element={<SignUpPage />} />
+        <Route
+          path="/signup"
+          element={<SignUpPage themeColor={themeColor} />}
+        />
         {/* SignUpPage 경로 추가 */}
         <Route path="/out" element={<OutOfService />} />
         {/* OutofService 경로 추가 */}

@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <div className="menu-item">Tasks</div>
           <div className="submenu">
             <Link to="/out" className="submenu-item upcoming">
-              📅 Upcoming <span className="badge">5</span>
+              <div>📅 Upcoming</div> <span className="badge">5</span>
             </Link>
             <Link to="/out" className="submenu-item important">
               🚨 Important

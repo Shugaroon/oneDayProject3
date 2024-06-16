@@ -71,10 +71,14 @@ input[type="text"] {
   margin-bottom: 10px;
   padding-bottom: 5px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .submenu {
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .submenu-item {
@@ -96,4 +100,11 @@ input[type="text"] {
 }
 .submenu-item:hover {
   transform: scale(1.05);
+}
+.sidebar a {
+  color: inherit;
+}
+.upcoming {
+  display: flex;
+  white-space: nowrap;
 }

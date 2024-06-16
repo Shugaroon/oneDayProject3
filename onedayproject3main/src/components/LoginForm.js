@@ -1,6 +1,6 @@
 import "../css/LoginForm.css";
 
-export default function LoginForm() {
+export default function LoginForm({ themeColor }) {
   return (
     <form className="LoginPage-login-form">
       <div className="LoginPage-logo-wrapper">
@@ -19,8 +19,17 @@ export default function LoginForm() {
         className="LoginPage-input LoginPage-login-box-item"
         required
       />
-      <button className="LoginPage-email-login-button">LOGIN</button>
-      <a href="/signup" className="LoginPage-sign-up-word">
+      <button
+        className="LoginPage-email-login-button"
+        style={{ backgroundColor: themeColor }}
+      >
+        LOGIN
+      </button>
+      <a
+        href="/signup"
+        className="LoginPage-sign-up-word"
+        style={{ color: themeColor }}
+      >
         회원 가입하기
       </a>
       <div className="LoginPage-loginBtn-wrapper">
