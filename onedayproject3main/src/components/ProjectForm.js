@@ -1,32 +1,70 @@
 import React, { useState } from "react";
 import "../css/ProjectForm.css";
+import sunflowerImage from "./img/sunflower.png";
 
 const ProjectForm = ({ onSave, onCancel }) => {
   const [projectName, setProjectName] = useState("");
+  const [isSpecialProject, setIsSpecialProject] = useState(false);
+  const [isLoremChecked, setIsLoremChecked] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSave({ name: projectName });
+    onSave({ name: projectName, isSpecialProject, isLoremChecked });
   };
 
   return (
-    <form className="project-form" onSubmit={handleSubmit}>
-      <p>Create Project</p>
-      <label>
-        <input
-          type="text"
-          placeholder="projectName"
-          onChange={e => setProjectName(e.target.value)}
-          required
-        />
-      </label>
-      <div className="form-actions">
-        <button type="submit">Create</button>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-      </div>
-    </form>
+    <div className="project-modal">
+      <form className="project-form" onSubmit={handleSubmit}>
+        <div className="form-header">
+          <span className="pin-icon"></span>
+          <p>Create New</p>
+        </div>
+        <div className="form-body">
+          <div className="form-image">
+            <img src={sunflowerImage} alt="Project" />
+          </div>
+          <div className="right-section">
+            <div className="form-inputs">
+              <div>
+                <input
+                  type="text"
+                  placeholder="📝 Project name"
+                  onChange={e => setProjectName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="add-people">
+                <input type="text" placeholder="👥 Add people" />
+              </div>
+            </div>
+            <div className="form-actions">
+              <div className="checkbox-section">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isSpecialProject}
+                    onChange={() => setIsSpecialProject(!isSpecialProject)}
+                  />
+                  special project
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isLoremChecked}
+                    onChange={() => setIsLoremChecked(!isLoremChecked)}
+                  />
+                  Lorem ipsum
+                </label>
+              </div>
+              <button type="submit">Create</button>
+              <button type="button" onClick={onCancel}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
