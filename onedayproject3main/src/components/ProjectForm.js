@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/ProjectForm.css";
-import sunflowerImage from "./img/sunflower.png";
+import sunflowerImage from "./img/createFormBackground.gif";
 
 const ProjectForm = ({ onSave, onCancel, themeColor }) => {
   const [projectName, setProjectName] = useState("");
