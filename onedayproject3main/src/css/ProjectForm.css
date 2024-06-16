@@ -1,24 +1,106 @@
+.project-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
 .project-form {
   display: flex;
   flex-direction: column;
-  padding: 0px 27px;
-  justify-content: center;
-  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 606px;
+  height: 385px;
+  margin: 0 auto;
 }
 
-.project-form h2 {
+.form-header {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.project-form input {
-  padding: 8px;
-  height: 23px;
-  margin: 5px 0px 28px 0px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  outline: none;
+.pin-icon {
+  font-size: 24px;
+  margin-right: 10px;
 }
-/* 
+
+.form-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-image img {
+  width: 362px;
+  height: 293px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 10px;
+  margin-bottom: 4px;
+  flex-grow: 1;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-inputs input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.add-people input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.checkbox-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.checkbox-section label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.checkbox-section input[type="checkbox"] {
+  margin-right: 10px;
+  transform-origin: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.checkbox-section input[type="checkbox"]:hover {
+  transform: scale(1.12);
+}
+
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -29,15 +111,16 @@
   padding: 10px 20px;
   margin-left: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-.form-actions button:first-of-type {
-  background-color: #3498db;
-  color: white;
+.form-inputs input {
+  margin-left: 10px;
+  border-radius: 16px;
 }
 
-.form-actions button:last-of-type {
-  color: white;
-} */
+.form-actions button {
+  border-radius: 16px;
+}
