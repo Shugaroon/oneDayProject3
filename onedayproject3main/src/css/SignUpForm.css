@@ -22,16 +22,17 @@
 }
 
 .SignUpForm-signUp-form .SignUpForm-input {
-    padding: 15px;
+    padding: 10px;
 }
 
 .SignUpForm-signUp-form ::placeholder {
     font-size: 12px;
+    color: #ccc;
 }
 
 .SignUpForm-signUp-box-item {
     padding: 10px;
-    border: 3px solid rgb(220, 220, 220);
+    border: 2px solid rgb(220, 220, 220);
     border-radius: 10px;
     background-color: white;
     margin-bottom: 10px;
@@ -42,7 +43,6 @@
 }
 
 .SignUpForm-create-account-button {
-    background-color: #003cff;
     color: white;
     font-size: 15px;
     padding: 12px;
@@ -57,6 +57,6 @@
 }
 
 .SignUpForm-word-item {
-    font-size: 12px;
-    margin: 3px;
+    font-size: 11px;
+    margin: 1px;
 }
