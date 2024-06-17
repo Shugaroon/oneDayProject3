@@ -48,7 +48,7 @@ export default function SignUpForm({ themeColor, onSignup }) {
       />
 
       <span className="SignUpForm-checkbox-span">
-        <input type="checkbox" id="checkbox" />I agree to the
+        <input type="checkbox" id="checkbox" />I agree
         <a href="/out" style={{ color: themeColor }}>
           Terms of Service
         </a>
@@ -63,7 +63,7 @@ export default function SignUpForm({ themeColor, onSignup }) {
       >
         Create an account
       </button>
-      <div>
+      <div className="SignUpForm-member">
         <span className="SignUpForm-word-item">Already a member?</span>
         <a
           href="/login"
