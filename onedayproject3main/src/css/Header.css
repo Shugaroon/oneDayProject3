@@ -25,6 +25,12 @@
   color: black;
 }
 
+.home-text {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+}
+
 .profile-pic {
   width: 33px;
   height: 33px;
