@@ -5,8 +5,11 @@ import {
   Routes,
   useParams,
   useLocation,
+  Navigate,
+  useNavigate,
 } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import MyCalendar from "./components/Calendar";
 import Sidebar from "./components/Sidebar";
 import IconBar from "./components/IconBar";
@@ -16,9 +19,9 @@ import EventForm from "./components/EventForm";
 import ProjectSelection from "./components/ProjectSelection";
 import ProjectForm from "./components/ProjectForm";
 import ThemeModal from "./components/ThemeModal";
-import EventModal from "./components/EventModal"; // EventModal 추가
-import LoginPage from "./components/LoginPage"; // LoginPage 추가
-import SignUpPage from "./components/SignUpPage"; // SignUpPage 추가
+import EventModal from "./components/EventModal";
+import LoginPage from "./components/LoginPage";
+import SignUpPage from "./components/SignUpPage";
 import "./App.css";
 import OutOfService from "./components/OutOfService";
 
@@ -31,6 +34,7 @@ const App = () => {
 
   const savedThemeColor = localStorage.getItem("themeColor") || themes.Default;
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState("month");
@@ -42,8 +46,8 @@ const App = () => {
   const [themeColor, setThemeColor] = useState(savedThemeColor);
   const [isMultiDay, setIsMultiDay] = useState(false);
   const [themeModalAnchor, setThemeModalAnchor] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null); // 여기 추가
-  const [isImportant, setIsImportant] = useState(false); // 여기 추가
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isImportant, setIsImportant] = useState(false);
 
   const updateElementStyles = useCallback(() => {
     const elements = document.querySelectorAll(
@@ -93,11 +97,11 @@ const App = () => {
       ...event,
       projectId,
       id: uuidv4(),
-      color: isImportant ? "red" : event.color, // 여기 수정
-    }; // 고유 ID 추가
+      color: isImportant ? "red" : event.color,
+    };
     setEvents([...events, newEvent]);
     setShowAddEventModal(false);
-    setIsImportant(false); // 여기 추가
+    setIsImportant(false);
   };
 
   const handleUpdateEvent = updatedEvent => {
@@ -136,63 +140,124 @@ const App = () => {
 
   const selectTheme = color => {
     setThemeColor(color);
-    localStorage.setItem("themeColor", color); // 로컬 스토리지에 저장
+    localStorage.setItem("themeColor", color);
     closeThemeModal();
   };
 
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage themeColor={themeColor} />} />
-        {/* LoginPage 경로 추가 */}
+        <Route
+          path="/login"
+          element={
+            <LoginPageWrapper
+              onLogin={setIsAuthenticated}
+              themeColor={themeColor}
+            />
+          }
+        />
         <Route
           path="/signup"
-          element={<SignUpPage themeColor={themeColor} />}
+          element={
+            <SignUpPageWrapper
+              onSignup={setIsAuthenticated}
+              themeColor={themeColor}
+            />
+          }
         />
-        {/* SignUpPage 경로 추가 */}
         <Route path="/out" element={<OutOfService />} />
-        {/* OutofService 경로 추가 */}
         <Route
           path="*"
           element={
-            <AppContent
-              sidebarOpen={sidebarOpen}
-              toggleSidebar={toggleSidebar}
-              themeColor={themeColor}
-              date={date}
-              view={view}
-              handleNavigate={handleNavigate}
-              handleViewChange={handleViewChange}
-              handleAddEvent={handleAddEvent}
-              events={events}
-              projects={projects}
-              handleAddProject={handleAddProject}
-              showAddEventModal={showAddEventModal}
-              setShowAddEventModal={setShowAddEventModal}
-              showAddProjectModal={showAddProjectModal}
-              setShowAddProjectModal={setShowAddProjectModal}
-              showThemeModal={showThemeModal}
-              openThemeModal={openThemeModal}
-              closeThemeModal={closeThemeModal}
-              selectTheme={selectTheme}
-              handleSaveEvent={handleSaveEvent}
-              handleSaveProject={handleSaveProject}
-              isMultiDay={isMultiDay}
-              setIsMultiDay={setIsMultiDay}
-              themeModalAnchor={themeModalAnchor}
-              selectedEvent={selectedEvent}
-              setSelectedEvent={setSelectedEvent}
-              handleEventSelect={handleEventSelect}
-              handleUpdateEvent={handleUpdateEvent}
-              handleDeleteEvent={handleDeleteEvent}
-              isImportant={isImportant} // 여기 추가
-              setIsImportant={setIsImportant} // 여기 추가
-            />
+            isAuthenticated ? (
+              <AppContent
+                sidebarOpen={sidebarOpen}
+                toggleSidebar={toggleSidebar}
+                themeColor={themeColor}
+                date={date}
+                view={view}
+                handleNavigate={handleNavigate}
+                handleViewChange={handleViewChange}
+                handleAddEvent={handleAddEvent}
+                events={events}
+                projects={projects}
+                handleAddProject={handleAddProject}
+                showAddEventModal={showAddEventModal}
+                setShowAddEventModal={setShowAddEventModal}
+                showAddProjectModal={showAddProjectModal}
+                setShowAddProjectModal={setShowAddProjectModal}
+                showThemeModal={showThemeModal}
+                openThemeModal={openThemeModal}
+                closeThemeModal={closeThemeModal}
+                selectTheme={selectTheme}
+                handleSaveEvent={handleSaveEvent}
+                handleSaveProject={handleSaveProject}
+                isMultiDay={isMultiDay}
+                setIsMultiDay={setIsMultiDay}
+                themeModalAnchor={themeModalAnchor}
+                selectedEvent={selectedEvent}
+                setSelectedEvent={setSelectedEvent}
+                handleEventSelect={handleEventSelect}
+                handleUpdateEvent={handleUpdateEvent}
+                handleDeleteEvent={handleDeleteEvent}
+                isImportant={isImportant}
+                setIsImportant={setIsImportant}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         />
       </Routes>
     </Router>
   );
+};
+
+const LoginPageWrapper = ({ onLogin, themeColor }) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await axios.post("http://localhost:3001/login", {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        onLogin(true); // isAuthenticated 상태를 true로 설정
+        navigate("/");
+      } else {
+        console.error("Login failed:", response.data);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  return <LoginPage onLogin={handleLogin} themeColor={themeColor} />;
+};
+
+const SignUpPageWrapper = ({ onSignup, themeColor }) => {
+  const navigate = useNavigate();
+
+  const handleSignup = async (name, email, password) => {
+    try {
+      const response = await axios.post("http://localhost:3001/register", {
+        name,
+        email,
+        password,
+      });
+      if (response.status === 201) {
+        onSignup(true); // isAuthenticated 상태를 true로 설정
+        navigate("/login");
+      } else {
+        console.error("Registration failed:", response.data);
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
+
+  return <SignUpPage onSignup={handleSignup} themeColor={themeColor} />;
 };
 
 const AppContent = ({
@@ -292,8 +357,8 @@ const AppContent = ({
                     setIsMultiDay={setIsMultiDay}
                     themeColor={themeColor}
                     handleEventSelect={handleEventSelect}
-                    isImportant={isImportant} // 여기 추가
-                    setIsImportant={setIsImportant} // 여기 추가
+                    isImportant={isImportant}
+                    setIsImportant={setIsImportant}
                   />
                 }
               />
@@ -413,9 +478,9 @@ const AddEventModal = ({
       >
         <div className="event-type-selector">
           <button
-            className={`important-btn ${isImportant ? "active" : ""}`} // 여기 수정
+            className={`important-btn ${isImportant ? "active" : ""}`}
             type="button"
-            onClick={() => setIsImportant(!isImportant)} // 여기 수정
+            onClick={() => setIsImportant(!isImportant)}
           >
             🚨
           </button>

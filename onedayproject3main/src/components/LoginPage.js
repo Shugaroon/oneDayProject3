@@ -1,7 +1,7 @@
 import "../css/LoginPage.css";
 import LoginForm from "./LoginForm";
 
-export default function LoginPage({ themeColor }) {
+export default function LoginPage({ themeColor, onLogin }) {
   return (
     <div
       className="LoginPage-container"
@@ -10,7 +10,7 @@ export default function LoginPage({ themeColor }) {
       <div className="LoginPage-white-container">
         <div className="LoginPage-login-container">
           <div className="LoginPage-login-form-wrapper">
-            <LoginForm themeColor={themeColor} />
+            <LoginForm themeColor={themeColor} onLogin={onLogin} />
           </div>
         </div>
       </div>

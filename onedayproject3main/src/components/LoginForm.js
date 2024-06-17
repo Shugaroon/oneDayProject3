@@ -1,8 +1,17 @@
+import React, { useState } from "react";
 import "../css/LoginForm.css";
 
-export default function LoginForm({ themeColor }) {
+export default function LoginForm({ themeColor, onLogin }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await onLogin(email, password);
+  };
+
   return (
-    <form className="LoginPage-login-form">
+    <form className="LoginPage-login-form" onSubmit={handleSubmit}>
       <div className="LoginPage-logo-wrapper">
         <p className="LoginPage-logo">TEAM COK</p>
       </div>
@@ -12,12 +21,16 @@ export default function LoginForm({ themeColor }) {
         className="LoginPage-input LoginPage-login-box-item"
         placeholder="Enter your email address"
         required
+        value={email}
+        onChange={e => setEmail(e.target.value)}
       />
       <input
         type="password"
         id="password"
         className="LoginPage-input LoginPage-login-box-item"
         required
+        value={password}
+        onChange={e => setPassword(e.target.value)}
       />
       <button
         className="LoginPage-email-login-button"
