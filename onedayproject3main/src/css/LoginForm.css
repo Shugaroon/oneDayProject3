@@ -9,27 +9,53 @@
     margin-bottom: 30px;
 }
 
-.LoginPage-logo {
+.LoginPage-teamKok-logo {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
 }
 
-.LoginPage-input {
-    margin: 10px 0;
-    outline: none;
-}
-
 .LoginPage-login-form ::placeholder {
     font-size: 12px;
+    color: #ccc;
+}
+
+/* .LoginPage-google-login-button {
+    position: relative;
+}
+
+.LoginPage-google-logo {
+    position: absolute;
+}
+
+.LoginPage-naver-login-image {
+    position: absolute;
+} */
+
+.LoginPage-login-logo {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+}
+
+.LoginPage-google-logo {
+    transform: translateX(-55px) translateY(-3px);
+}
+.LoginPage-kakao-logo {
+    transform: translateX(-57px) translateY(-2px);
+}
+.LoginPage-naver-logo {
+    transform: translate(-59px) translateY(-3px);
 }
 
 .LoginPage-login-box-item {
     padding: 10px;
-    border: 3px solid rgb(220, 220, 220);
-    border-radius: 10px;
+    border: 2px solid rgb(220, 220, 220);
+    border-radius: 15px;
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    outline: none;
+    color: darkgray;
 }
 
 .LoginPage-sign-up-word {
@@ -48,6 +74,8 @@
     transition: 0.2s;
     background-color: #003cff;
     color: white;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
 }
 .LoginPage-email-login-button:hover {
     transform: scale(1.02);
